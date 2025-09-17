@@ -33,8 +33,8 @@
 | Jalon (_Milestone_)       | Date prévue    | Livrable                            | Statut      |
 | ------------------------- | -------------- | ----------------------------------- | ----------- |
 | Ouverture de projet       | 3 Septembre    | Proposition de projet               | ✅ Terminé  |
-| Analyse des exigences     | 17 Septembre   | Document d'analyse                  | 🔄 En cours |
-| Prototype 1               | 24 Septembre   | Maquette + Flux d'activités         | ⏳ À venir  |
+| Analyse des exigences     | 17 Septembre   | Document d'analyse                  | ✅ Terminé  |
+| Prototype 1               | 24 Septembre   | Maquette + Flux d'activités         | 🔄 En cours  |
 | Prototype 2               | 1er Octobre    | Prototype finale + Flux             | ⏳ À venir  |
 | Architecture              | 1er Octobre    | Diagramme UML ou modèle C4          | ⏳ À venir  |
 | Modèle de donneés         | 8 Octobre      | Diagramme UML ou entité-association | ⏳ À venir  |
