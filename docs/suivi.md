@@ -73,6 +73,34 @@
 
 ## Semaine 4
 
+??? note "Affinage du prototype et des informations pertinentes"
+    - [x] Discussions autour du prototype : bonnes orientations, pas de problèmes majeurs de design
+    - [x] Liste des informations pour chaque acteur (professeur, étudiant, administration)
+        * Définir ce que chaque acteur peut publier et ce qu’il recherche
+        * Filtrer les informations pertinentes (obligatoires vs optionnelles)
+        * Réflexion sur la présentation des informations aux utilisateurs
+    - [x] Exemple concret : 
+        * Lorsqu’un étudiant saisit son programme d’études → une liste de cours lui est proposée
+        * Il peut cocher les cours suivis
+        * Automatisation : calcul automatique du nombre de crédits
+    - [x] Discussion sur l’utilisation possible d’API externes (LinkedIn, Microsoft Teams) pour enrichir les informations et les disponibilités
+
+!!! info "Notes"
+    - Le projet avance dans une bonne direction
+    - Le prototype devient plus complet et commence à intégrer des cas concrets
+    - Les API externes pourraient apporter une valeur ajoutée mais nécessitent une étude plus approfondie
+
+!!! warning "Difficultés rencontrées"
+    - Aucune difficulté majeure signalée, mais des recherches nécessaires sur l’intégration des API externes (LinkedIn, Teams)
+
+!!! abstract "Prochaines étapes"
+    - Explorer Supabase pour la conception et gestion du système de données
+    - Finaliser le prototype avec toutes les vues
+    - Compléter la liste des exigences dans `analysis.md`
+                
+
+
+
 ## Semaine 5
 
 ## Semaine 6

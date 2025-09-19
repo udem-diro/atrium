@@ -2,5 +2,7 @@
   "[markdown]": {
     "editor.formatOnSave": false,
     "files.trimTrailingWhitespace": false
-  }
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "python-envs.pythonProjects": []
 }
