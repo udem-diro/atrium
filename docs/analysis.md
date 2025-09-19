@@ -21,11 +21,11 @@ Le personnel administratif, quant à lui, n’a pas de plateforme centralisée p
 - Les professeurs doivent pouvoir publier leurs informations (opportunités de recherche, disponibilité pour supervision, domaines d’intérêt).  
 - Les étudiants doivent pouvoir consulter, rechercher et filtrer ces informations.  
 - Les étudiants doivent pouvoir contacter directement un professeur via son adresse email.  
-- Le personnel administratif doit pouvoir avoir un rôle de consultation et éventuellement de validation de certaines informations.  
-- L’interface doit proposer des vues claires : page d’accueil (hub d’informations), profils des professeurs, éventuellement profils étudiants.  
+- Le personnel administratif doit pouvoir avoir un rôle de consultation et publication d'opportunités.
+- L’interface doit proposer des vues claires : page d’accueil (hub d’informations), profils des professeurs, profils étudiants et profils pour les administrateurs du département.  
 
 ### Exigences non fonctionnelles
-- **Simplicité d’utilisation** : interface intuitive et claire.  
+- **Simplicité d’utilisation** : interface intuitive et claire. 
 - **Accessibilité** : compatible avec différents navigateurs et appareils.  
 - **Confidentialité** : gestion de la visibilité des informations partagées.  
 - **Performance** : recherche rapide dans les opportunités disponibles.  
@@ -56,7 +56,7 @@ Ce choix permet de :
 ## Méthodologie
 
 Le projet suivra une approche itérative et incrémentale, inspirée des méthodes agiles :  
-- **Phase 1** : Analyse des besoins (actuellement en cours).  
+- **Phase 1** : Analyse des besoins.  
 - **Phase 2** : Conception des prototypes (maquettes, workflows, validation avec le superviseur et utilisateurs potentiels).  
 - **Phase 3** : Développement progressif des fonctionnalités principales.  
 - **Phase 4** : Tests et validation (avec étudiants, professeurs, personnel administratif).  
