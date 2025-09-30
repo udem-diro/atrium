@@ -97,11 +97,31 @@
     - Explorer Supabase pour la conception et gestion du système de données
     - Finaliser le prototype avec toutes les vues
     - Compléter la liste des exigences dans `analysis.md`
-                
-
-
 
 ## Semaine 5
+
+??? note "Rôle des administrateurs, logo et prototype"
+    - [x] Discussion sur le rôle des administrateurs du département et les fonctionnalités qu’ils peuvent utiliser
+    - [x] Choix du nom et du logo du projet
+    - [x] Revue du prototype avec suggestions d’amélioration
+        * Version finale V1 du prototype à terminer pour la semaine prochaine
+    - [x] Début de la discussion sur le modèle de données : choix des tables et implantation sur Supabase
+    - [x] Possibilité de préremplir la base avec les noms des professeurs et leurs informations de base
+        * Avantage : éviter aux professeurs de créer un nouveau compte, juste changer le mot de passe temporaire
+    - [ ] Difficulté : comment améliorer les interfaces et sélectionner les informations pertinentes pour chaque acteur
+    - [ ] Réduire le travail manuel pour les utilisateurs
+
+!!! info "Notes"
+    - Prototype globalement bien orienté
+    - Les discussions ont permis de clarifier le rôle des administrateurs et les informations à gérer pour chaque acteur
+
+!!! warning "Difficultés rencontrées"
+    - Comment rendre l’interface simple tout en présentant toutes les informations pertinentes
+    - Gestion du préremplissage de la base pour les professeurs
+
+!!! abstract "Prochaines étapes"
+    - Créer le diagramme EA (Entité-Association) du système
+    - Finaliser la version V1 des interfaces
 
 ## Semaine 6
 
