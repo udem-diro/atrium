@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { supabase } from "./supabaseClient.tsx";
 
 import "./App.css";
+import Header from "./components/Header.tsx";
 
 function App() {
   useEffect(() => {
@@ -19,13 +20,7 @@ function App() {
     testConnection();
   }, []);
 
-  return (
-    <div className="flex items-center justify-center h-screen bg-gray-50">
-      <h1 className="text-2xl font-bold text-green-600">
-        Supabase Connection Test 🚀
-      </h1>
-    </div>
-  );
+  return <Header />;
 }
 
 export default App;
