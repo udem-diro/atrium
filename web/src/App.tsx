@@ -3,6 +3,7 @@ import { supabase } from "./supabaseClient.tsx";
 
 import "./App.css";
 import Header from "./components/Header.tsx";
+import TabsContainer from "./components/TabsContainer.tsx";
 
 function App() {
   useEffect(() => {
@@ -20,7 +21,12 @@ function App() {
     testConnection();
   }, []);
 
-  return <Header />;
+  return (
+    <div>
+      <Header />
+      <TabsContainer />
+    </div>
+  );
 }
 
 export default App;
