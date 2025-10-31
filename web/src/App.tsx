@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useEffect } from "react";
-import { supabase } from "./supabaseClient.tsx";
+// import { useEffect } from "react";
+// import { supabase } from "./supabaseClient.tsx";
 
 import "./App.css";
 import Header from "./components/Header.tsx";
