@@ -2,7 +2,7 @@ import React from "react";
 
 type ButtonProps = {
   buttonText: string;
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "view";
   size?: "sm" | "md" | "lg" | "responsive";
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
@@ -22,7 +22,7 @@ function Button({
   switch (variant) {
     case "primary":
       variantClasses =
-        "bg-white text-black hover:bg-[#005DAA] hover:text-white";
+        "bg-white text-black font-semibold hover:bg-[#005DAA] hover:text-white";
       break;
     case "secondary":
       variantClasses = "bg-gray-200 text-gray-800 hover:bg-gray-300";
@@ -30,6 +30,9 @@ function Button({
     case "outline":
       variantClasses = "border border-gray-300 text-gray-800 hover:bg-gray-100";
       break;
+    case "view":
+      variantClasses =
+        "bg-[#005DAA] text-white font-semibold hover:bg-[#004985]";
   }
 
   // Sizes
@@ -46,7 +49,7 @@ function Button({
       break;
     case "responsive":
       sizeClasses =
-        "px-3 py-2 text-sm md:px-5 md:py-3 lg:px-6 my-auto md:rounded-xl";
+        "px-3 py-2 text-xs md:px-5 md:py-3 lg:px-6 my-auto md:rounded-xl";
       break;
   }
 
