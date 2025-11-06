@@ -1,27 +1,27 @@
 import Tab from "./Tab.tsx";
+import { useStore } from "../hooks/useStore.ts";
+import { getStore } from "../utils/Store.ts";
 
-type tabsContainerProps = {
-  selectedTab: string;
-  setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
-};
+function TabsContainer() {
+  const selectedTab = useStore((s) => s.selectedTab);
+  const store = getStore();
 
-function TabsContainer({ selectedTab, setSelectedTab }: tabsContainerProps) {
   return (
     <div className="flex gap-1 mt-4 rounded-lg py-1 px-1 bg-[#F3F3F5]">
       <Tab
         tabText="Opportunities"
         isActive={selectedTab === "op"}
-        onClick={() => setSelectedTab("op")}
+        onClick={() => store.setSelectedTab("op")}
       />
       <Tab
         tabText="Professors"
         isActive={selectedTab === "prof"}
-        onClick={() => setSelectedTab("prof")}
+        onClick={() => store.setSelectedTab("prof")}
       />
       <Tab
         tabText="Students"
         isActive={selectedTab === "stu"}
-        onClick={() => setSelectedTab("stu")}
+        onClick={() => store.setSelectedTab("stu")}
       />
     </div>
   );

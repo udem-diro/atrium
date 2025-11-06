@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useStore } from "./hooks/useStore.ts";
 // import { useEffect } from "react";
 // import { supabase } from "./supabaseClient.tsx";
 
@@ -28,15 +29,12 @@ function App() {
   //   testConnection();
   // }, []);
 
-  const [selectedTab, setSelectedTab] = useState("op");
+  const selectedTab = useStore((s) => s.selectedTab);
 
   return (
     <div className="h-screen flex flex-col mb-24">
       <Header />
-      <TabsContainer
-        selectedTab={selectedTab}
-        setSelectedTab={setSelectedTab}
-      />
+      <TabsContainer />
       <div className="flex flex-col gap-2 md:flex-row mt-4 justify-center align-center">
         <SearchBar />
         <FilterList bgColor="CAE7FF" filtersList="🔍Opportunities ▼" />
