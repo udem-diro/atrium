@@ -6,3 +6,13 @@
     font-family: "Inter", sans-serif;
   }
 }
+
+@layer utilities {
+  .bg-light-blue {
+    background-color: #cae7ff;
+  }
+
+  .bg-light-gray {
+    background-color: #f3f3f5;
+  }
+}

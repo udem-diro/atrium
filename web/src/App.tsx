@@ -37,7 +37,7 @@ function App() {
       <TabsContainer />
       <div className="flex flex-col gap-2 md:flex-row mt-4 justify-center align-center">
         <SearchBar />
-        <FilterList bgColor="CAE7FF" filtersList="🔍Opportunities ▼" />
+        <FilterList bgColor="bg-light-blue" filtersList="🔍Opportunities ▼" />
       </div>
 
       {/* quick filters */}
@@ -71,7 +71,7 @@ function App() {
         <h2 className="font-semibold text-[#848484] flex-3 text-sm lg:text-base">
           Found 2 Opportunities
         </h2>
-        <FilterList bgColor="F3F3F5" filtersList="Most recent ▼" />
+        <FilterList bgColor="bg-light-gray" filtersList="Most recent ▼" />
       </div>
 
       {/*Content*/}
