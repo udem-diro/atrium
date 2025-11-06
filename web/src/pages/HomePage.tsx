@@ -15,7 +15,7 @@ export default function HomePage() {
     <div className="flex flex-col mb-24">
       <TabsContainer />
 
-      <div className="flex flex-col gap-2 md:flex-row mt-4 justify-center items-center">
+      <div className="flex flex-col gap-2 md:flex-row mt-4 justify-center">
         <SearchBar />
         <FilterList bgColor="bg-light-blue" filtersList="🔍Opportunities ▼" />
       </div>
