@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "./widgets/Button";
 import Tag from "./Tag";
 
 function OppotunityCard() {

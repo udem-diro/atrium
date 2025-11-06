@@ -1,5 +1,5 @@
 import logo from "../assets/logo_atrium.svg"; // adjust the path as needed
-import Button from "./Button.tsx";
+import Button from "../widgets/Button.tsx";
 
 function Header() {
   return (

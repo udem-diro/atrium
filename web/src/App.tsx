@@ -4,11 +4,11 @@ import { useStore } from "./hooks/useStore.ts";
 // import { supabase } from "./supabaseClient.tsx";
 
 import "./App.css";
-import Header from "./components/Header.tsx";
-import TabsContainer from "./components/TabsContainer.tsx";
-import SearchBar from "./components/SearchBar.tsx";
-import FilterList from "./components/FilterList.tsx";
-import Button from "./components/Button.tsx";
+import Header from "./components/layouts/Header.tsx";
+import TabsContainer from "./components/layouts/TabsContainer.tsx";
+import SearchBar from "./components/widgets/SearchBar.tsx";
+import FilterList from "./components/widgets/FilterList.tsx";
+import Button from "./components/widgets/Button.tsx";
 import OpportunitiesList from "./views/OpportunitiesList.tsx";
 import ProfessorsList from "./views/ProfessorsList.tsx";
 import StudentsList from "./views/StudentsList.tsx";

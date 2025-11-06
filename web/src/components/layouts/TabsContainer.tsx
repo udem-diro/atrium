@@ -1,6 +1,6 @@
-import Tab from "./Tab.tsx";
-import { useStore } from "../hooks/useStore.ts";
-import { getStore } from "../utils/Store.ts";
+import Tab from "../widgets/Tab.tsx";
+import { useStore } from "../../hooks/useStore.ts";
+import { getStore } from "../../utils/Store.ts";
 
 function TabsContainer() {
   const selectedTab = useStore((s) => s.selectedTab);
