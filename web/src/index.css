@@ -12,7 +12,15 @@
     background-color: #cae7ff;
   }
 
+  .bg-dark-blue {
+    background-color: #7a99cf;
+  }
+
   .bg-light-gray {
     background-color: #f3f3f5;
+  }
+
+  .bg-dark-gray {
+    background-color: #8a8a8a;
   }
 }

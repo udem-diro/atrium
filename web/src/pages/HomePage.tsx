@@ -17,7 +17,11 @@ export default function HomePage() {
 
       <div className="flex flex-col gap-2 md:flex-row mt-4 justify-center">
         <SearchBar />
-        <FilterList bgColor="bg-light-blue" filtersList="🔍Opportunities ▼" />
+        <FilterList
+          bgColor="bg-light-blue"
+          hoverColor="hover:bg-dark-blue"
+          options={["All Opportunities", "Internships", "Scholarships"]}
+        />
       </div>
 
       {/* Quick filters */}
@@ -50,7 +54,11 @@ export default function HomePage() {
         <h2 className="font-semibold text-[#848484] flex-3 text-sm lg:text-base">
           Found 2 Opportunities
         </h2>
-        <FilterList bgColor="bg-light-gray" filtersList="Most recent ▼" />
+        <FilterList
+          bgColor="bg-light-gray"
+          hoverColor="hover:bg-dark-gray"
+          options={["Most recent", "Deadline soon"]}
+        />
       </div>
 
       {/* Content */}
