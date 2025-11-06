@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import Button from "./widgets/Button";
-import Tag from "./Tag";
+import Tag from "./widgets/Tag";
 
 function OppotunityCard() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-3 justify-start px-4 py-3 border rounded-lg shadow-md hover:shadow-black/20 transition-shadow">
       <h4 className="text-[#AA0000]">deadline in 3 days</h4>
@@ -46,7 +49,11 @@ function OppotunityCard() {
         </div>
       </div>
 
-      <Button buttonText="view details" variant="view" />
+      <Button
+        buttonText="view details"
+        variant="view"
+        onClick={() => navigate("/opportunity")}
+      />
     </div>
   );
 }

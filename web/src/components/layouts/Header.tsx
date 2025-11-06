@@ -1,4 +1,4 @@
-import logo from "../assets/logo_atrium.svg"; // adjust the path as needed
+import logo from "../../assets/logo_atrium.svg";
 import Button from "../widgets/Button.tsx";
 
 function Header() {
