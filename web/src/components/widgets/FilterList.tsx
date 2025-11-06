@@ -24,7 +24,7 @@ function FilterList({
     <div className="relative flex-1">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full h-full flex justify-center items-center rounded-lg ${bgColor} py-2 px-1 ${hoverColor} md:px-2 lg:px-3 text-xs lg:text-base font-bold text-black`}
+        className={`w-full h-full flex justify-center items-center rounded-lg ${bgColor} ${hoverColor} py-2 px-1  md:px-2 lg:px-3 text-xs lg:text-base font-bold text-black`}
       >
         {selected}
         <span className="w-1 md:w-2"> </span>

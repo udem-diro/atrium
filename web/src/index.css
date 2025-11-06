@@ -7,20 +7,9 @@
   }
 }
 
-@layer utilities {
-  .bg-light-blue {
-    background-color: #cae7ff;
-  }
-
-  .bg-dark-blue {
-    background-color: #7a99cf;
-  }
-
-  .bg-light-gray {
-    background-color: #f3f3f5;
-  }
-
-  .bg-dark-gray {
-    background-color: #8a8a8a;
-  }
+@theme {
+  --color-light-blue: #cae7ff;
+  --color-dark-blue: #7a99cf;
+  --color-light-gray: #f3f3f5;
+  --color-dark-gray: #8a8a8a;
 }

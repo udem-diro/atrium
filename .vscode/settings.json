@@ -3,5 +3,5 @@
     "editor.formatOnSave": false,
     "files.trimTrailingWhitespace": false
   },
-  "python.terminal.activateEnvironment": false,
+  "python.terminal.activateEnvironment": false
 }
