@@ -14,10 +14,10 @@ function App() {
         courriel: "jean.tremblay@umontreal.ca",
         programme_id: 5544,
       });
-      console.log("✅ Added student:", data);
+      console.log("ajouter etudiant:", data);
       alert("Student added successfully!");
     } catch (error: any) {
-      console.error("❌ Error adding student:", error.message);
+      console.error("erreur d'ajout etudiant:", error.message);
       alert("Error: " + error.message);
     }
   }
