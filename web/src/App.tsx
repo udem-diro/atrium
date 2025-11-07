@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layouts/Header.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import OpportunityPage from "./pages/OpportunityPage.tsx";
-import {addEtudiant}  from "./API/updateDB/updateEtudiants.ts";
+import { addEtudiant } from "./API/updateDB/updateEtudiants.ts";
 
 function App() {
   async function handleAdd() {
@@ -22,10 +22,7 @@ function App() {
     }
   }
 
-
-
   return (
-
     <Router>
       <div className="h-screen flex flex-col">
         <Header />
@@ -34,11 +31,15 @@ function App() {
           <Route path="/opportunity" element={<OpportunityPage />} />
         </Routes>
       </div>
-
-      <div>
-      <h1>Test Add Étudiant</h1>
-      <button onClick={handleAdd}>Add Student</button>
-      </div>
+      {/* <div>
+        <h1>Test Add Étudiant</h1>
+        <button
+          onClick={handleAdd}
+          className="border bg-light-blue rounded px-4 py-1 text-gray-600 font-semibold hover:bg-dark-blue"
+        >
+          Add Student
+        </button>
+      </div> */}
     </Router>
   );
 }

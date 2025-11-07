@@ -28,7 +28,8 @@ function Button({
       variantClasses = "bg-gray-200 text-gray-800 hover:bg-gray-300";
       break;
     case "outline":
-      variantClasses = "border border-gray-300 text-gray-800 hover:bg-gray-100";
+      variantClasses =
+        "border border-gray-600 text-gray-800 font-semibold hover:bg-gray-100";
       break;
     case "view":
       variantClasses =
