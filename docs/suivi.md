@@ -124,13 +124,86 @@
     - Finaliser la version V1 des interfaces
 
 ## Semaine 6
+??? note "Modélisation du modèle E/A et structuration des données"
+    - [x] Travail approfondi sur le diagramme Entité-Association (E/A) via Visual Paradigm
+    - [x] Discussions pour clarifier les relations entre acteurs (étudiants, professeurs, administration)
+    - [x] Révisions successives pour obtenir une base solide et cohérente
+    - [ ] Validation finale du modèle (encore en cours cette semaine)
+
+!!! info "Notes"
+    - Le modèle de données est une étape critique car il conditionne l’ensemble du projet
+    - Priorité donnée à la clarté des relations et à la simplicité des structures
+
+!!! warning "Difficultés rencontrées"
+    - Travail long et complexe : nécessité d’itérer plusieurs fois pour obtenir un modèle robuste
+    - Importance d’anticiper les futurs cas d’usage afin d’éviter les modifications lourdes plus tard
+
+!!! abstract "Prochaines étapes"
+    - Finaliser le modèle E/A
+    - Préparer la création des tables dans Supabase
 
 ## Semaine 7
+??? note "Exploration et prise en main de Supabase + Finalisation des interfaces"
+    - [x] Introduction à Supabase : gestion BD, authentification, règles de visibilité
+    - [x] Finalisation de la V1 du modèle E/A et préparation pour l’implémentation
+    - [x] Progression sur Figma : interfaces des pages principales (home, profils, navigation)
+    - [ ] Choix des derniers éléments UI (boutons, couleurs, icônes)
+
+!!! info "Notes"
+    - Supabase simplifie la gestion backend mais demande une compréhension de son workflow (policies, auth, tables)
+    - Le design figma devient désormais suffisamment complet pour guider le développement
+
+!!! warning "Difficultés rencontrées"
+    - Temps nécessaire pour bien comprendre la logique Supabase (policies, row-level security)
+    - Ajustements fréquents du prototype pour garder une interface claire et cohérente
+
+!!! abstract "Prochaines étapes"
+    - Créer les tables dans Supabase en suivant le modèle final
+    - Commencer la mise en place du projet React
 
 ## Semaine 8
+??? note "Installation du projet et première implémentation"
+    - [x] Setup du projet : React + Typescript + TailwindCSS
+    - [x] Connexion du projet à Supabase (client + configuration sécurisée)
+    - [x] Structure du code en modules : `components`, `pages`, `views`, `apis`, `utils`
+    - [x] Implémentation de la **Homepage** suivant le design Figma
+    - [x] Mise en place du routing avec **React Router**
+    - [x] Ajout de la librairie **react-icons**
+    - [ ] Tests d’affichage sur différents devices (responsive encore en amélioration)
+
+!!! info "Notes"
+    - Organisation du code pensée pour faciliter l’évolutivité
+    - Utilisation d’un store global pour éviter le *prop drilling* et améliorer la gestion du state
+
+!!! warning "Difficultés rencontrées"
+    - Prise en main du workflow React + Tailwind + Supabase (temps d’adaptation)
+    - Nécessité d’optimiser la structure des composants pour éviter la duplication
+
+!!! abstract "Prochaines étapes"
+    - Améliorer les vues secondaires (profils, liste des projets/offres)
+    - Finaliser le responsive design
 
 ## Semaine 9
+??? note "Refinements du code et finalisation du modèle Supabase"
+    - [x] Refactoring du code pour améliorer la lisibilité et modularité
+    - [x] Finalisation complète du modèle E/A
+    - [x] Création et configuration des tables dans Supabase
+    - [x] Amélioration du responsive design (mobile → tablette → desktop)
+    - [ ] Début de création des endpoints / fichiers API pour communiquer avec Supabase
 
+!!! info "Notes"
+    - La base de données est maintenant fonctionnelle et prête à accueillir les données réelles
+    - L’interface devient stable et utilisable dans ses premières pages
+
+!!! warning "Difficultés rencontrées"
+    - Ajustements délicats pour faire correspondre exactement les vues avec les données réelles
+    - Adaptation progressive au système de policies de Supabase
+
+!!! abstract "Prochaines étapes"
+    - Terminer l’implémentation des vues restantes
+    - Créer les API CRUD pour les entités (professeur, étudiant, projet, etc.)
+    - Connecter l’interface aux données et implémenter les fonctionnalités interactives
+    
 ## Semaine 10
 
 ## Semaine 11

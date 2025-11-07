@@ -1,4 +1,4 @@
-# Projet IFT3150: Uniquest
+# Projet IFT3150: Atrium
 
 > **Thèmes**: Génie logiciel, développement web
 
@@ -16,6 +16,7 @@
 ## Équipe
 
 - Mohamed Terbaoui
+- Joseph Finan
 
 ## Description du projet
 
@@ -56,12 +57,12 @@ Il est important de noter que cette plateforme n’est pas une **application de 
 | ------------------------- | -------------- | ----------------------------------- | ----------- |
 | Ouverture de projet       | 3 Septembre    | Proposition de projet               | ✅ Terminé  |
 | Analyse des exigences     | 17 Septembre   | Document d'analyse                  | ✅ Terminé  |
-| Prototype 1               | 24 Septembre   | Maquette + Flux d'activités         | 🔄 En cours  |
-| Prototype 2               | 1er Octobre    | Prototype finale + Flux             | ⏳ À venir  |
-| Architecture              | 1er Octobre    | Diagramme UML ou modèle C4          | ⏳ À venir  |
-| Modèle de donneés         | 8 Octobre      | Diagramme UML ou entité-association | ⏳ À venir  |
-| Revue de conception       | 8 Octobre      | Feedback encadrant + ajustements    | ⏳ À venir  |
-| Implémentation v1         | 22 Octobre     | Application v1                      | ⏳ À venir  |
+| Prototype 1               | 24 Septembre   | Maquette + Flux d'activités         | ✅ Terminé   |
+| Prototype 2               | 1er Octobre    | Prototype finale + Flux             | ✅ Terminé   |
+| Architecture              | 1er Octobre    | Diagramme UML ou modèle C4          | ✅ Terminé   |
+| Modèle de donneés         | 8 Octobre      | Diagramme UML ou entité-association | ✅ Terminé   |
+| Revue de conception       | 8 Octobre      | Feedback encadrant + ajustements    | ✅ Terminé  |
+| Implémentation v1         | 22 Octobre     | Application v1                      | 🔄 En cours  |
 | Implémentation v2 + tests | 12 Novembre    | Application v2 + Tests              | ⏳ À venir  |
 | Implémentation v3         | 3 Décembre     | Version finale                      | ⏳ À venir  |
 | Tests                     | 12-31 Novembre | Plan + Résultats intermédiaires     | ⏳ À venir  |

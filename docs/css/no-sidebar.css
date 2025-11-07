@@ -7,10 +7,16 @@
 
 /* Hide the section sidebar (on the left) */
 .md-sidebar--primary {
-    display: none !important;
+  display: none !important;
 }
 
 /* Hide the table of contents */
 /* .md-sidebar--secondary {
     display: none !important;
 } */
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
