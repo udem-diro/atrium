@@ -1,6 +1,6 @@
 import ProfessorCard from "../components/ProfessorCard";
 import Button from "../components/widgets/Button";
-import InfoCard from "../components/widgets/infoCard";
+import InfoCard from "../components/widgets/InfoCard.tsx";
 import Tag from "../components/widgets/Tag";
 import { FaClock } from "react-icons/fa";
 
