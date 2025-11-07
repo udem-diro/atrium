@@ -14,7 +14,7 @@ function OpportunityPage() {
       />
 
       <div className="flex flex-col gap-4 justify-center items-start mt-6">
-        <div className="flex justify-start">
+        <div className="flex gap-2 justify-start">
           <Tag tagText={"Research"} />
           <Tag tagText={"3 students"} />
         </div>
