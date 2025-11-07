@@ -1,4 +1,4 @@
-import StudentCard from "../components/StudentCard";
+import StudentCard from "../../components/StudentCard";
 
 function StudentsList() {
   return (

@@ -1,4 +1,4 @@
-import OppotunityCard from "../components/OppotunityCard";
+import OppotunityCard from "../../components/OppotunityCard";
 
 function OpportunitiesList() {
   return (

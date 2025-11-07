@@ -1,4 +1,4 @@
-import ProfessorCard from "../components/ProfessorCard";
+import ProfessorCard from "../../components/ProfessorCard";
 
 function ProfessorsList() {
   return (

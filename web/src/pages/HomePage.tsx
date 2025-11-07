@@ -4,9 +4,9 @@ import TabsContainer from "../components/layouts/TabsContainer.tsx";
 import SearchBar from "../components/widgets/SearchBar.tsx";
 import FilterList from "../components/widgets/FilterList.tsx";
 import Button from "../components/widgets/Button.tsx";
-import OpportunitiesList from "../views/OpportunitiesList.tsx";
-import ProfessorsList from "../views/ProfessorsList.tsx";
-import StudentsList from "../views/StudentsList.tsx";
+import OpportunitiesList from "../pages/views/OpportunitiesList.tsx";
+import ProfessorsList from "../pages/views/ProfessorsList.tsx";
+import StudentsList from "../pages/views/StudentsList.tsx";
 
 export default function HomePage() {
   const selectedTab = useStore((s) => s.selectedTab);
