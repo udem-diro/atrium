@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
 
 type FilterProps = {
   options: string[];
@@ -26,6 +27,8 @@ function FilterList({
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full h-full flex justify-center items-center rounded-lg ${bgColor} ${hoverColor} py-2 px-1  md:px-2 lg:px-3 text-xs lg:text-base font-bold text-black`}
       >
+        <FaFilter className="text-xs" />
+        <span className="w-1 md:w-2"> </span>
         {selected}
         <span className="w-1 md:w-2"> </span>
         <FaChevronDown

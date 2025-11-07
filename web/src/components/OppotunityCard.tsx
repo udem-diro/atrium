@@ -38,7 +38,7 @@ function OppotunityCard() {
       <div>
         <h2 className="font-semibold">Professeur</h2>
         <div className="flex items-center gap-6">
-          <div className="flex justify-center items-center w-16 h-16 rounded-full bg-[#005DAA] text-white font-bold">
+          <div className="flex justify-center items-center w-16 h-16 rounded-full bg-primary text-white font-bold">
             J
           </div>
           <div className="text-sm">
