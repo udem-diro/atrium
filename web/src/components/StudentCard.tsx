@@ -1,5 +1,6 @@
 import { FaLink } from "react-icons/fa";
 import Tag from "./widgets/Tag";
+import { useNavigate } from "react-router-dom";
 
 type StudentCardProps = {
   name: string;
@@ -18,8 +19,13 @@ function StudentCard({
   shortBio,
   tags,
 }: StudentCardProps) {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex justify-center border border-gray-300 rounded-lg shadow-md  hover:shadow-lg transition-shadow relative">
+    <div
+      className="flex justify-center border border-gray-300 rounded-lg shadow-md  hover:shadow-lg transition-shadow relative cursor-pointer"
+      onClick={() => navigate("/student")}
+    >
       <FaLink className="absolute text-sm text-primary top-4 right-4 " />
       <div className=" w-[90%] flex flex-col justify-center items-start md:items-start gap-2 md:gap-3 px-4 py-4 ">
         <div className="flex gap-1 justify-start">

@@ -15,7 +15,8 @@ function Button({
   ...props
 }: ButtonProps) {
   // Base shared styles
-  const base = "rounded-lg font-medium transition-colors border";
+  const base =
+    "rounded-lg font-medium transition-colors border hover:cursor-pointer";
 
   // Variants
   let variantClasses = "";

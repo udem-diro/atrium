@@ -2,6 +2,7 @@ import { FaStar } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import Tag from "./widgets/Tag";
 import Button from "./widgets/Button";
+import { useNavigate } from "react-router-dom";
 
 type ProfessorCardProps = {
   name: string;
@@ -22,6 +23,8 @@ function ProfessorCard({
   nbrSlotsAvailable,
   tags,
 }: ProfessorCardProps) {
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-center border border-gray-300 rounded-lg shadow-md  hover:shadow-lg transition-shadow">
       <div className=" w-[90%] flex flex-col justify-center items-start md:items-start gap-2 md:gap-3 px-4 py-4">
@@ -53,8 +56,20 @@ function ProfessorCard({
         </div>
 
         <div className="flex gap-2 justify-center">
-          <Button buttonText="Contact" variant="view" size="responsive" />
-          <Button buttonText="Profile" variant="outline" size="responsive" />
+          <Button
+            buttonText="Contact"
+            variant="view"
+            size="responsive"
+            onClick={() =>
+              (window.location.href = "mailto:someone@example.com")
+            }
+          />
+          <Button
+            buttonText="Profile"
+            variant="outline"
+            size="responsive"
+            onClick={() => navigate("/professor")}
+          />
         </div>
       </div>
     </div>

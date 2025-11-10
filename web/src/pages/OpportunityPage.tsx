@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import OrganisationProfileCard from "../components/OrganisationProfileCard.tsx";
 import ProfessorProfileCard from "../components/ProfessorProfileCard.tsx";
 import Button from "../components/widgets/Button";
@@ -6,12 +7,15 @@ import Tag from "../components/widgets/Tag";
 import { FaClock } from "react-icons/fa";
 
 function OpportunityPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="mt-6">
       <Button
-        buttonText="&larr; Back to search"
+        buttonText="&larr; Back"
         size="responsive"
         variant="outline"
+        onClick={() => navigate(-1)}
       />
 
       <div className="flex flex-col gap-4 justify-center items-start mt-6">

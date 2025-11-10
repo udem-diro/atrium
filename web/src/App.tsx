@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layouts/Header.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import OpportunityPage from "./pages/OpportunityPage.tsx";
+import ProfessorProfilePage from "./pages/ProfessorProfilePage.tsx";
+import StudentProfilePage from "./pages/StudentProfilePage.tsx";
+import AdminProfilePage from "./pages/AdminProfilePage.tsx";
+// import useStore from "./store/store.ts";
 // import { addEtudiant } from "./API/updateDB/updateEtudiants.ts";
 
 function App() {
@@ -24,11 +28,14 @@ function App() {
 
   return (
     <Router>
-      <div className="flex flex-col mb-24">
+      <div className="flex flex-col">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/opportunity" element={<OpportunityPage />} />
+          <Route path="/professor" element={<ProfessorProfilePage />} />
+          <Route path="/student" element={<StudentProfilePage />} />
+          <Route path="/admin" element={<AdminProfilePage />} />
         </Routes>
       </div>
       {/* <div>

@@ -1,0 +1,155 @@
+import Button from "../components/widgets/Button";
+import Tag from "../components/widgets/Tag";
+import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
+
+function StudentProfilePage() {
+  return (
+    <div className="flex flex-col md:grid md:grid-cols-[2.5fr_3fr] lg:grid-cols-[1fr_2fr] gap-4 justify-center mt-6">
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
+          <div>
+            <div className="flex flex-col gap-2 items-center mt-4">
+              <div className="flex justify-center items-center rounded-full w-16 aspect-square bg-primary object-cover text-white font-semibold">
+                J
+                <img src="" alt="" />
+              </div>
+
+              <h2 className="font-semibold">John doe</h2>
+              <Tag tagText="Bsc" />
+            </div>
+            <div className="flex items-center gap-4 mt-4">
+              <FaEnvelope className="text-2xl" />
+              <div>
+                <h3 className="text-gray-500">Email</h3>
+                <p className="font-semibold">john.doe@example.com</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 mt-4">
+              <FaBuilding className="text-2xl" />
+              <div>
+                <h3 className="text-gray-500">Field of study</h3>
+                <p className="font-semibold">Bsc. Computer Science</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 mt-4">
+              <Button
+                buttonText="Download CV"
+                variant="outline"
+                size="responsive"
+                onClick={() => {}}
+              />
+              <Button
+                buttonText="Contact Student"
+                variant="view"
+                size="responsive"
+                onClick={() => {}}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
+          <div className="flex gap-2 justify-start items-center mb-2">
+            <FaLink />{" "}
+            <h2 className="text-gray-500 font-semibold">External Links</h2>
+          </div>
+
+          <Button buttonText="github" size="responsive" variant="outline" />
+          <Button buttonText="linkedin" size="responsive" variant="outline" />
+          <Button buttonText="Portfolio" size="responsive" variant="outline" />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
+          <h2 className="text-gray-500 font-semibold">About</h2>
+          <p className="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            porttitor nisi lectus, a lacinia nibh volutpat a. Donec pulvinar
+            eros et lectus finibus egestas. Morbi blandit lacinia nisi, a
+            viverra metus. Suspendisse varius ex fringilla lorem facilisis
+          </p>
+        </div>
+
+        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
+          <h2 className="text-gray-500 font-semibold">Academic Interests</h2>
+          <div className="flex gap-2 flex-wrap">
+            <Tag tagText="Ai" />
+            <Tag tagText="Web Development" />
+            <Tag tagText="Mobile Development" />
+            <Tag tagText="Data Science" />
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
+          <h2 className="text-gray-500 font-semibold">Completed courses</h2>
+          <ul className="grid grid-cols-2 gap-2">
+            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT1215</li>
+            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT3700</li>
+            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT2255</li>
+            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT3355</li>
+          </ul>
+        </div>
+
+        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md text-sm">
+          <h2 className="text-gray-500 font-semibold">Projects</h2>
+          <div className="flex flex-col gap-2 mb-4">
+            <h3 className="text-black font-semibold">
+              Medical image classification system <br></br>
+              <span className="text-gray-400 text-sm ">2024</span>
+            </h3>
+            <p className="text-gray-600">
+              Developed a convolutional neural network to classify medical
+              images for early disease detection. Achievec 94% accuracy.
+            </p>
+            <h4 className="font-semibold">Technologies</h4>
+            <div className="flex gap-2 flex-wrap">
+              <Tag tagText="Python" />
+              <Tag tagText="TensorFlow" />
+              <Tag tagText="Keras" />
+            </div>
+            <hr className="text-gray-200 mt-4 w-2/3  mx-auto" />
+          </div>
+
+          <div className="flex flex-col gap-2 mb-4">
+            <h3 className="text-black font-semibold">
+              Medical image classification system <br></br>
+              <span className="text-gray-400 text-sm ">2024</span>
+            </h3>
+            <p className="text-gray-600">
+              Developed a convolutional neural network to classify medical
+              images for early disease detection. Achievec 94% accuracy.
+            </p>
+            <h4 className="font-semibold">Technologies</h4>
+            <div className="flex gap-2 flex-wrap">
+              <Tag tagText="Python" />
+              <Tag tagText="TensorFlow" />
+              <Tag tagText="Keras" />
+            </div>
+            <hr className="text-gray-200 mt-4 w-2/3  mx-auto" />
+          </div>
+
+          <div className="flex flex-col gap-2 mb-4">
+            <h3 className="text-black font-semibold">
+              Medical image classification system <br></br>
+              <span className="text-gray-400 text-sm ">2024</span>
+            </h3>
+            <p className="text-gray-600">
+              Developed a convolutional neural network to classify medical
+              images for early disease detection. Achievec 94% accuracy.
+            </p>
+            <h4 className="font-semibold">Technologies</h4>
+            <div className="flex gap-2 flex-wrap">
+              <Tag tagText="Python" />
+              <Tag tagText="TensorFlow" />
+              <Tag tagText="Keras" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default StudentProfilePage;
