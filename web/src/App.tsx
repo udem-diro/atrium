@@ -24,7 +24,7 @@ function App() {
 
   return (
     <Router>
-      <div className="h-screen flex flex-col">
+      <div className="flex flex-col mb-24">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
