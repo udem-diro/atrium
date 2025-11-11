@@ -14,3 +14,21 @@
   --color-light-gray: #f3f3f5;
   --color-dark-gray: #dbdbdb;
 }
+
+/* Thin, rounded scrollbar */
+::-webkit-scrollbar {
+  width: 6px; /* scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* track background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4; /* thumb color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
