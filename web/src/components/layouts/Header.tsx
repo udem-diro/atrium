@@ -14,13 +14,21 @@ function Header() {
         >
           <img className="w-full h-auto" src={logo} alt="logo"></img>
         </div>
+        <div className="flex gap-2">
+          <Button
+            buttonText="Log in"
+            variant="view"
+            size="responsive"
+            onClick={() => navigate("/login")}
+          />
 
-        <Button
-          buttonText="My profile"
-          variant="primary"
-          size="responsive"
-          onClick={() => navigate("/admin")}
-        />
+          <Button
+            buttonText="My profile"
+            variant="primary"
+            size="responsive"
+            onClick={() => navigate("/admin")}
+          />
+        </div>
       </div>
 
       <hr className="h-px border-0 bg-gray-200 w-screen mt-4 absolute left-0.5" />

@@ -3,7 +3,7 @@ import React from "react";
 type ButtonProps = {
   buttonText: string;
   variant?: "primary" | "secondary" | "outline" | "view";
-  size?: "sm" | "md" | "lg" | "responsive";
+  size?: "sm" | "md" | "lg" | "responsive" | "full";
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -51,7 +51,10 @@ function Button({
       break;
     case "responsive":
       sizeClasses =
-        "px-3 py-2 text-xs md:px-5 md:py-3 lg:px-6 my-auto md:rounded-xl";
+        "px-3 py-2 text-xs lg:text-sm md:px-5 md:py-3 lg:px-6 my-auto md:rounded-xl";
+      break;
+    case "full":
+      sizeClasses = "w-full px-4 py-2 text-base";
       break;
   }
 

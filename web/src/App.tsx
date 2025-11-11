@@ -6,6 +6,8 @@ import OpportunityPage from "./pages/OpportunityPage.tsx";
 import ProfessorProfilePage from "./pages/ProfessorProfilePage.tsx";
 import StudentProfilePage from "./pages/StudentProfilePage.tsx";
 import AdminProfilePage from "./pages/AdminProfilePage.tsx";
+import LoginPage from "./pages/LoginPage.tsx";
+import SignupPage from "./pages/SignupPage.tsx";
 // import useStore from "./store/store.ts";
 // import { addEtudiant } from "./API/updateDB/updateEtudiants.ts";
 
@@ -36,6 +38,9 @@ function App() {
           <Route path="/professor" element={<ProfessorProfilePage />} />
           <Route path="/student" element={<StudentProfilePage />} />
           <Route path="/admin" element={<AdminProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </div>
       {/* <div>
