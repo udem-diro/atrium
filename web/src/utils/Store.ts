@@ -19,7 +19,7 @@ export type AppState = {
   notifications: Notification[];
 
   // Selected tab on main view
-  selectedTab: "op" | "prof" | "stu";
+  selectedTab: string;
 
   // Global Loading/Error
   global: {
@@ -50,7 +50,7 @@ const INITIAL_STATE: AppState = {
   selectedOfferId: null,
   selectedSubmissionId: null,
   notifications: [],
-  selectedTab: "op", // default opportunities tab
+  selectedTab: "Opportunities", // default opportunities tab
 };
 
 export class Store {
@@ -138,7 +138,7 @@ export class Store {
   }
 
   // ===================== Main View Tabs ========================
-  public setSelectedTab(tab: "op" | "prof" | "stu") {
+  public setSelectedTab(tab: string) {
     this.setState({ selectedTab: tab }, "setSelectedTab");
   }
 

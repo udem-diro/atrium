@@ -4,12 +4,14 @@ type ProfessorProfileCardProps = {
   name: string;
   department: string;
   email: string;
+  hasProfileButton?: boolean;
 };
 
 function ProfessorProfileCard({
   name,
   department,
   email,
+  hasProfileButton = true,
 }: ProfessorProfileCardProps) {
   return (
     <div className="w-full flex gap-5 md:gap-6 justify-center md:justify-start items-center border rounded-xl border-gray-400 p-4 md:p-6 lg:px-12 lg:py-8 shadow-md">
@@ -24,7 +26,9 @@ function ProfessorProfileCard({
         </div>
         <div className="flex gap-2 mt-2">
           <Button buttonText="Contact" size="responsive" variant="view" />
-          <Button buttonText="Profile" size="responsive" variant="outline" />
+          {hasProfileButton && (
+            <Button buttonText="Profile" size="responsive" variant="outline" />
+          )}
         </div>
       </div>
     </div>

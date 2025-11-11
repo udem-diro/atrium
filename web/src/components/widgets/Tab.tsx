@@ -13,7 +13,7 @@ function Tab({ tabText, isActive, onClick }: TabProps) {
   return (
     <button
       onClick={onClick}
-      className={`flex-1 flex px-2 py-1 justify-center align-center rounded-sm text-xs md:text-md lg:text-lg text-black font-bold ${tabStyle}`}
+      className={`flex-1 flex px-2 py-1 justify-center items-center rounded-sm text-xs md:text-md lg:text-lg text-black font-bold ${tabStyle}`}
     >
       {tabText}
     </button>

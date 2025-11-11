@@ -25,6 +25,9 @@ function ProfessorCard({
 }: ProfessorCardProps) {
   const navigate = useNavigate();
 
+  const navigateToProfessorProfile = () => {
+    navigate("/professor");
+  };
   return (
     <div className="flex justify-center border border-gray-300 rounded-lg shadow-md  hover:shadow-lg transition-shadow">
       <div className=" w-[90%] flex flex-col justify-center items-start md:items-start gap-2 md:gap-3 px-4 py-4">
@@ -68,7 +71,7 @@ function ProfessorCard({
             buttonText="Profile"
             variant="outline"
             size="responsive"
-            onClick={() => navigate("/professor")}
+            onClick={navigateToProfessorProfile}
           />
         </div>
       </div>

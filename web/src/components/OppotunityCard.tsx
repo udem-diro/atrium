@@ -6,7 +6,7 @@ import Tag from "./widgets/Tag";
 function OppotunityCard() {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col gap-3 justify-start px-4 py-3 border rounded-lg shadow-md hover:shadow-black/20 transition-shadow">
+    <div className="flex flex-col gap-3 lg:gap-4 justify-start p-4 md:p-5 2xl:p-10 border rounded-lg shadow-md hover:shadow-black/20 transition-shadow">
       <h4 className="text-[#AA0000]">deadline in 3 days</h4>
       <div className="flex gap-2">
         <Tag tagText="TA" />

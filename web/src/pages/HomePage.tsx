@@ -1,4 +1,5 @@
 import { useStore } from "../hooks/useStore.ts";
+import { getStore } from "../utils/Store.ts";
 
 import TabsContainer from "../components/layouts/TabsContainer.tsx";
 import SearchBar from "../components/widgets/SearchBar.tsx";
@@ -7,13 +8,18 @@ import Button from "../components/widgets/Button.tsx";
 import OpportunitiesList from "../pages/views/OpportunitiesList.tsx";
 import ProfessorsList from "../pages/views/ProfessorsList.tsx";
 import StudentsList from "../pages/views/StudentsList.tsx";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  useEffect(() => {
+    const store = getStore();
+    store.setSelectedTab("Opportunities");
+  }, []);
   const selectedTab = useStore((s) => s.selectedTab);
 
   return (
     <div className="flex flex-col mb-24">
-      <TabsContainer />
+      <TabsContainer tabs={["Opportunities", "Professors", "Students"]} />
 
       <div className="flex flex-col gap-2 md:flex-row mt-4 justify-center">
         <SearchBar />
@@ -63,9 +69,9 @@ export default function HomePage() {
 
       {/* Content */}
       <section className="my-4 flex-1 lg:overflow-auto scroll-smooth lg:pb-12">
-        {selectedTab === "op" && <OpportunitiesList />}
-        {selectedTab === "prof" && <ProfessorsList />}
-        {selectedTab === "stu" && <StudentsList />}
+        {selectedTab === "Opportunities" && <OpportunitiesList />}
+        {selectedTab === "Professors" && <ProfessorsList />}
+        {selectedTab === "Students" && <StudentsList />}
       </section>
     </div>
   );
