@@ -1,0 +1,91 @@
+CREATE TABLE Professeur (
+  id_professeur SERIAL NOT NULL, 
+  courriel      varchar(255) NOT NULL, 
+  nom           varchar(100) NOT NULL, 
+  site_web      text, 
+  disponible    bool NOT NULL, 
+  bio           varchar(255), 
+  photo_profil  varchar(255), 
+  last_modified date, 
+  PRIMARY KEY (id_professeur));
+CREATE TABLE Etudiants (
+  id_etudiant  SERIAL NOT NULL, 
+  courriel     varchar(255) NOT NULL, 
+  nom          varchar(100) NOT NULL, 
+  liens        varchar(255), 
+  cv_url       text, 
+  photo_profil varchar(255), 
+  programme_id int4 NOT NULL, 
+  PRIMARY KEY (id_etudiant));
+CREATE TABLE Administration (
+  id_admin SERIAL NOT NULL, 
+  courriel varchar(255), 
+  nom      varchar(255), 
+  PRIMARY KEY (id_admin));
+CREATE TABLE Cours (
+  sigle_cours SERIAL NOT NULL, 
+  nom         varchar(50) NOT NULL, 
+  nb_credits  int2 NOT NULL, 
+  description text, 
+  PRIMARY KEY (sigle_cours));
+CREATE TABLE Opportunites (
+  id_opportunite SERIAL NOT NULL, 
+  description    text NOT NULL, 
+  exigences      text, 
+  ouvert         bool, 
+  expiration     date, 
+  partenaire     varchar(255), 
+  type           int2 NOT NULL, 
+  montant        int4, 
+  emplacement    int4, 
+  professeur_id  int4 NOT NULL, 
+  admin_id       int4 NOT NULL, 
+  PRIMARY KEY (id_opportunite));
+CREATE TABLE Matching (
+  id_etudiant    int4 NOT NULL, 
+  id_opportunite int4 NOT NULL, 
+  note           text, 
+  PRIMARY KEY (id_etudiant, 
+  id_opportunite));
+CREATE TABLE Organisation (
+  id_organisation SERIAL NOT NULL, 
+  nom             varchar(255) NOT NULL, 
+  representant    varchar(255), 
+  contact         varchar(255) NOT NULL, 
+  PRIMARY KEY (id_organisation));
+CREATE TABLE Cours_suivis (
+  etudiant_id int4 NOT NULL, 
+  cours_id    int4 NOT NULL, 
+  PRIMARY KEY (etudiant_id, 
+  cours_id));
+CREATE TABLE Programme (
+  id_programme SERIAL NOT NULL, 
+  nom          varchar(155) NOT NULL, 
+  description  text, 
+  PRIMARY KEY (id_programme));
+CREATE TABLE Domaine_interet (
+  professeur_id int4 NOT NULL, 
+  domaine_id    int4 NOT NULL, 
+  PRIMARY KEY (professeur_id, 
+  domaine_id));
+CREATE TABLE Domaine (
+  id_domaine  SERIAL NOT NULL, 
+  nom         varchar(155) NOT NULL, 
+  description text, 
+  PRIMARY KEY (id_domaine));
+CREATE TABLE Opportunites_Organisation (
+  opportunite_id  int4 NOT NULL, 
+  organisation_id int4 NOT NULL, 
+  PRIMARY KEY (opportunite_id, 
+  organisation_id));
+ALTER TABLE Domaine_interet ADD CONSTRAINT FKDomaine_in578148 FOREIGN KEY (domaine_id) REFERENCES Domaine (id_domaine);
+ALTER TABLE Domaine_interet ADD CONSTRAINT FKDomaine_in676212 FOREIGN KEY (professeur_id) REFERENCES Professeur (id_professeur);
+ALTER TABLE Etudiants ADD CONSTRAINT FKEtudiants363555 FOREIGN KEY (programme_id) REFERENCES Programme (id_programme);
+ALTER TABLE Matching ADD CONSTRAINT FKMatching963231 FOREIGN KEY (id_etudiant) REFERENCES Etudiants (id_etudiant);
+ALTER TABLE Matching ADD CONSTRAINT FKMatching617658 FOREIGN KEY (id_opportunite) REFERENCES Opportunites (id_opportunite);
+ALTER TABLE Opportunites ADD CONSTRAINT FKOpportunit744007 FOREIGN KEY (professeur_id) REFERENCES Professeur (id_professeur);
+ALTER TABLE Opportunites ADD CONSTRAINT FKOpportunit525 FOREIGN KEY (admin_id) REFERENCES Administration (id_admin);
+ALTER TABLE Cours_suivis ADD CONSTRAINT FKCours_suiv524723 FOREIGN KEY (cours_id) REFERENCES Cours (sigle_cours);
+ALTER TABLE Cours_suivis ADD CONSTRAINT FKCours_suiv944549 FOREIGN KEY (etudiant_id) REFERENCES Etudiants (id_etudiant);
+ALTER TABLE Opportunites_Organisation ADD CONSTRAINT FKOpportunit170771 FOREIGN KEY (opportunite_id) REFERENCES Opportunites (id_opportunite);
+ALTER TABLE Opportunites_Organisation ADD CONSTRAINT FKOpportunit855856 FOREIGN KEY (organisation_id) REFERENCES Organisation (id_organisation);
