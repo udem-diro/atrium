@@ -5,9 +5,42 @@ import Button from "../components/widgets/Button";
 import InfoCard from "../components/widgets/InfoCard.tsx";
 import Tag from "../components/widgets/Tag";
 import { FaClock } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getOpportunity } from "../API/updateDB/updateOpportunite.ts";
+import { getProfesseur } from "../API/updateDB/updateProfesseur.ts";
+import type { Opportunity } from "../models/Opportunity.ts";
+import type { Professor } from "../models/Professor.ts";
 
 function OpportunityPage() {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [opportunity, setOpportunity] = useState<Opportunity | null>(null);
+  const [professor, setProfessor] = useState<Professor | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!id) return;
+
+      try {
+        const opp = await getOpportunity(id);
+        setOpportunity(opp);
+
+        const prof = await getProfesseur(opp.professeur_id);
+        setProfessor(prof);
+      } catch (err) {
+        console.error("Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [id]);
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div className="mt-6">
@@ -25,17 +58,13 @@ function OpportunityPage() {
         </div>
 
         <h1 className="text-md md:text-lg lg:text-xl font-semibold">
-          AI Ethics Research
+          {opportunity?.titre}
         </h1>
 
         <div className="flex w-full flex-col md:flex-row gap-4 justify-center">
-          <ProfessorProfileCard
-            name="Dr. Jane Smith"
-            department="Computer Science"
-            email="jane.smith@university.edu"
-          />
+          {professor && <ProfessorProfileCard professor={professor} />}
           <OrganisationProfileCard
-            name="Tech Innovations Inc."
+            name={opportunity?.partenaire}
             department="Research and Development"
             email="contact@techinnovations.com"
           />
@@ -44,7 +73,7 @@ function OpportunityPage() {
         <div className="w-full grid gap-3 md:gap-4 grid-cols-2 md:grid-cols-3 justify-center items-center mt-1 mb-1 md:mb-3 lg:mb-4 lg:mt-4">
           <InfoCard
             title="Deadline"
-            content="December 15, 2024"
+            content={opportunity?.expiration ?? "N/A"}
             icon={FaClock}
           />
           <InfoCard
@@ -74,36 +103,25 @@ function OpportunityPage() {
           />
         </div>
 
-        <div className="flex flex-col md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 gap-4">
+        <div className="w-full flex flex-col md:grid md:grid-cols-[2fr_1fr] md:grid-rows-2 gap-4">
           <div className="border border-gray-400 shadow-md p-6 rounded-xl md:p-8 lg:p-10 md:row-span-2">
             <h2 className="font-semibold mb-2">Description</h2>
-            <p className="text-gray-500 text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              porttitor nisi lectus, a lacinia nibh volutpat a. Donec pulvinar
-              eros et lectus finibus egestas. Morbi blandit lacinia nisi, a
-              viverra metus. Suspendisse varius ex fringilla lorem facilisis
-              blandit. Ut at nulla eget dolor luctus dapibus non ut justo.{" "}
-            </p>
+            <p className="text-gray-500 text-sm">{opportunity?.description} </p>
           </div>
 
           <div className="border border-gray-400 shadow-md p-6 rounded-xl md:p-8 lg:p-10 md:ml-1">
             <h2 className="font-semibold mb-2">Requirements</h2>
             <ul className="text-gray-500 text-sm list-disc list-inside leading-6">
-              <li>Background in computer science</li>
-              <li>Background in computer science</li>
-              <li>Background in computer science</li>
-              <li>Background in computer science</li>
+              {opportunity?.exigences}
             </ul>
           </div>
 
           <div className="border border-gray-400 shadow-md p-6 rounded-xl md:p-8 lg:p-10 md:ml-1">
             <h2 className="font-semibold mb-2">Desired Skills</h2>
             <div className="flex gap-1 flex-wrap leading-5">
-              <Tag tagText="Python" />
-              <Tag tagText="Machine Learning" />
-              <Tag tagText="Data Analysis" />
-              <Tag tagText="Ethics" />
-              <Tag tagText="Research" />
+              {opportunity?.skills?.map((skill, index) => (
+                <Tag key={index} tagText={skill} />
+              ))}
             </div>
           </div>
         </div>

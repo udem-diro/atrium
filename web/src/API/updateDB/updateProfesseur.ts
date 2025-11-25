@@ -1,4 +1,5 @@
 import { supabase } from "../supabaseClient";
+import type { Professor } from "../../models/Professor";
 
 export async function getProfesseurs() {
   return await supabase.from("professeur").select("*").order("id_professeur");
@@ -18,5 +19,19 @@ export async function addProfesseur(professeur: {
 }
 
 export async function deleteProfesseur(id_professeur: number) {
-  return await supabase.from("professeur").delete().eq("id_professeur", id_professeur);
+  return await supabase
+    .from("professeur")
+    .delete()
+    .eq("id_professeur", id_professeur);
+}
+
+export async function getProfesseur(id: number) {
+  const { data, error } = await supabase
+    .from("professeur")
+    .select("*")
+    .eq("id_professeur", id)
+    .maybeSingle<Professor>();
+
+  if (error) throw error;
+  return data;
 }

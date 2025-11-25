@@ -1,5 +1,5 @@
 import type { Notification } from "../models/Notification";
-import type { Offer } from "../models/Offer";
+import type { Opportunity } from "../models/Opportunity";
 import type { User } from "../models/User";
 
 export type AppState = {
@@ -11,15 +11,18 @@ export type AppState = {
   };
 
   // Offers and submissions
-  offers: Offer[];
+  offers: Opportunity[];
   selectedOfferId: string | null;
   selectedSubmissionId: string | null;
 
   // Notifications
   notifications: Notification[];
 
-  // Selected tab on main view
+  // Selected tab on home page
   selectedTab: string;
+
+  // Global search on home page
+  searchQuery: string;
 
   // Global Loading/Error
   global: {
@@ -51,6 +54,7 @@ const INITIAL_STATE: AppState = {
   selectedSubmissionId: null,
   notifications: [],
   selectedTab: "Opportunities", // default opportunities tab
+  searchQuery: "", // default search query (empty)
 };
 
 export class Store {
@@ -140,6 +144,11 @@ export class Store {
   // ===================== Main View Tabs ========================
   public setSelectedTab(tab: string) {
     this.setState({ selectedTab: tab }, "setSelectedTab");
+  }
+
+  // ===================== Search ===============================
+  public setSearchQuery(query: string) {
+    this.setState({ searchQuery: query }, "setSearchQuery");
   }
 
   // ==================== NOTIFICATIONS ====================

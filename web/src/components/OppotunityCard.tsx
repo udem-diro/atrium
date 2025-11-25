@@ -1,22 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import type { Opportunity } from "../models/Opportunity.ts";
 
 import Button from "./widgets/Button";
 import Tag from "./widgets/Tag";
 
-function OppotunityCard() {
+interface OpportunityCardProps {
+  opportunity: Opportunity;
+}
+
+function OppotunityCard({ opportunity }: OpportunityCardProps) {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-3 lg:gap-4 justify-start p-4 md:p-5 2xl:p-10 border rounded-lg shadow-md hover:shadow-black/20 transition-shadow">
-      <h4 className="text-[#AA0000]">deadline in 3 days</h4>
+      <h4 className="text-[#AA0000]">Deadline: {opportunity.expiration}</h4>
       <div className="flex gap-2">
-        <Tag tagText="TA" />
-        <h2 className="font-semibold">Biology TA</h2>
+        <Tag tagText="tag" />
+        <h2 className="font-semibold">{opportunity.titre}</h2>
       </div>
-      <p className="text-[#838383] text-sm">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor
-        nisi lectus, a lacinia nibh volutpat a. Donec pulvinar eros et lectus
-        finibus egestas.
-      </p>
+      <p className="text-[#838383] text-sm">{opportunity.description}</p>
 
       <div className="flex gap-6 text-sm text-[#848484] font-bold self-center">
         <div>
@@ -52,7 +53,7 @@ function OppotunityCard() {
       <Button
         buttonText="view details"
         variant="view"
-        onClick={() => navigate("/opportunity")}
+        onClick={() => navigate(`/opportunity/${opportunity.id_opportunite}`)}
       />
     </div>
   );

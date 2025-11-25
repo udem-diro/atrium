@@ -1,7 +1,7 @@
 import Button from "./widgets/Button";
 
 type OrganisationProfileCardProps = {
-  name: string;
+  name: string | null | undefined;
   department: string;
   email: string;
 };

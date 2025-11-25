@@ -12,46 +12,21 @@ import SignupPage from "./pages/SignupPage.tsx";
 // import { addEtudiant } from "./API/updateDB/updateEtudiants.ts";
 
 function App() {
-  // async function handleAdd() {
-  //   try {
-  //     const data = await addEtudiant({
-  //       id_etudiant: 20257343,
-  //       nom: "Jean Tremblay",
-  //       courriel: "jean.tremblay@umontreal.ca",
-  //       programme_id: 5544,
-  //     });
-  //     console.log("ajouter etudiant:", data);
-  //     alert("Student added successfully!");
-  //   } catch (error: any) {
-  //     console.error("erreur d'ajout etudiant:", error.message);
-  //     alert("Error: " + error.message);
-  //   }
-  // }
-
   return (
     <Router>
       <div className="flex flex-col">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/opportunity" element={<OpportunityPage />} />
-          <Route path="/professor" element={<ProfessorProfilePage />} />
-          <Route path="/student" element={<StudentProfilePage />} />
+          <Route path="/opportunity/:id" element={<OpportunityPage />} />
+          <Route path="/professor/:id" element={<ProfessorProfilePage />} />
+          <Route path="/student/:id" element={<StudentProfilePage />} />
           <Route path="/admin" element={<AdminProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </div>
-      {/* <div>
-        <h1>Test Add Étudiant</h1>
-        <button
-          onClick={handleAdd}
-          className="border bg-light-blue rounded px-4 py-1 text-gray-600 font-semibold hover:bg-dark-blue"
-        >
-          Add Student
-        </button>
-      </div> */}
     </Router>
   );
 }

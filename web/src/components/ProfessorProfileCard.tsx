@@ -1,16 +1,13 @@
 import Button from "./widgets/Button";
+import type { Professor } from "../models/Professor";
 
 type ProfessorProfileCardProps = {
-  name: string;
-  department: string;
-  email: string;
+  professor: Professor;
   hasProfileButton?: boolean;
 };
 
 function ProfessorProfileCard({
-  name,
-  department,
-  email,
+  professor,
   hasProfileButton = true,
 }: ProfessorProfileCardProps) {
   return (
@@ -20,9 +17,9 @@ function ProfessorProfileCard({
       </div>
       <div>
         <div className="text-sm text-gray-800">
-          <h3 className="font-semibold">{name}</h3>
-          <h4 className="text-xs mb-0.5 text-gray-500">{department}</h4>
-          <h4 className="font-semibold">{email}</h4>
+          <h3 className="font-semibold">{professor.nom}</h3>
+          <h4 className="text-xs mb-0.5 text-gray-500">{professor.bio}</h4>
+          <h4 className="font-semibold">{professor.courriel}</h4>
         </div>
         <div className="flex gap-2 mt-2">
           <Button buttonText="Contact" size="responsive" variant="view" />
