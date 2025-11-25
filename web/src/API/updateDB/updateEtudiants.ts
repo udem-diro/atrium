@@ -1,4 +1,4 @@
-import {supabase} from "../supabaseClient";
+import { supabase } from "../supabaseClient";
 
 export async function addEtudiant(etudiant: {
   id_etudiant: number;
@@ -20,5 +20,18 @@ export async function addEtudiant(etudiant: {
 
 // Delete a student
 export async function deleteEtudiant(id_etudiant: number) {
-  return await supabase.from("Etudiants").delete().eq("id_etudiant", id_etudiant);
+  return await supabase
+    .from("Etudiants")
+    .delete()
+    .eq("id_etudiant", id_etudiant);
+}
+
+export async function getStudent(id_etudiant: number) {
+  const data = await supabase
+    .from("etudiants")
+    .select("*")
+    .eq("id_etudiant", id_etudiant)
+    .single();
+
+  return data;
 }

@@ -1,8 +1,36 @@
+import { useParams } from "react-router-dom";
 import Button from "../components/widgets/Button";
 import Tag from "../components/widgets/Tag";
 import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import type { Student } from "../models/Student";
+import { getStudent } from "../API/updateDB/updateEtudiants";
 
 function StudentProfilePage() {
+  const { id } = useParams();
+  const [student, setStudent] = useState<Student | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+
+    async function fetchStudent() {
+      const { data, error } = await getStudent(Number(id));
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      setStudent(data ?? null);
+      setLoading(false);
+    }
+
+    fetchStudent();
+  }, [id]);
+
+  if (loading) return <h1>loading...</h1>;
+
   return (
     <div className="flex flex-col md:grid md:grid-cols-[2.5fr_3fr] lg:grid-cols-[1fr_2fr] gap-4 justify-center mt-6">
       <div className="flex flex-col gap-4">
@@ -11,17 +39,17 @@ function StudentProfilePage() {
             <div className="flex flex-col gap-2 items-center mt-4">
               <div className="flex justify-center items-center rounded-full w-16 aspect-square bg-primary object-cover text-white font-semibold">
                 J
-                <img src="" alt="" />
+                <img src={undefined} alt="" />
               </div>
 
-              <h2 className="font-semibold">John doe</h2>
+              <h2 className="font-semibold">{student?.nom}</h2>
               <Tag tagText="Bsc" />
             </div>
             <div className="flex items-center gap-4 mt-4">
               <FaEnvelope className="text-2xl" />
               <div>
                 <h3 className="text-gray-500">Email</h3>
-                <p className="font-semibold">john.doe@example.com</p>
+                <p className="font-semibold">{student?.courriel}</p>
               </div>
             </div>
             <div className="flex items-center gap-4 mt-4">

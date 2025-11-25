@@ -1,44 +1,47 @@
+import { useEffect, useState } from "react";
 import StudentCard from "../../components/StudentCard";
+import type { Student } from "../../models/Student";
+import { useStore } from "../../hooks/useStore";
+import { supabase } from "../../API/supabaseClient";
 
 function StudentsList() {
+  const [students, setStudents] = useState<Student[]>([]);
+  const searchQuery = useStore((s) => s.searchQuery);
+
+  // need to fetch the list of professors from supabase
+  // then render each Card with the data I get
+  async function fetchStudents() {
+    const { data, error } = await supabase
+      .from("etudiants")
+      .select("*")
+      .order("nom", { ascending: true });
+
+    if (error) {
+      console.error("Error fetching opportunities:", error);
+      return;
+    }
+    setStudents((data ?? []) as Student[]);
+  }
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  // Filter results based on search query
+  const filteredStudents = students.filter((stu) => {
+    const q = searchQuery.toLowerCase();
+
+    return (
+      stu.nom?.toLowerCase().includes(q) ||
+      stu.courriel?.toLowerCase().includes(q)
+    );
+  });
+
   return (
     <div className="grid gap-2 md:gap-3 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-      <StudentCard
-        name="John Doe"
-        department="Computer Science"
-        email="john.doe@example.com"
-        shortBio="Aspiring software engineer."
-        nbrPostedOpportunities={2}
-        nbrSlotsAvailable={1}
-        tags={["JavaScript", "React"]}
-      />
-      <StudentCard
-        name="Jane Smith"
-        department="Mathematics"
-        email="jane.smith@example.com"
-        shortBio="Mathematics enthusiast."
-        nbrPostedOpportunities={0}
-        nbrSlotsAvailable={0}
-        tags={["TA", "Internship"]}
-      />
-      <StudentCard
-        name="Alice Johnson"
-        department="Physics"
-        email="alice.johnson@example.com"
-        shortBio="Physics major with a passion for research."
-        nbrPostedOpportunities={1}
-        nbrSlotsAvailable={1}
-        tags={["Physics", "Research"]}
-      />
-      <StudentCard
-        name="Bob Brown"
-        department="Chemistry"
-        email="bob.brown@example.com"
-        shortBio="Chemistry student with a focus on organic chemistry."
-        nbrPostedOpportunities={0}
-        nbrSlotsAvailable={0}
-        tags={["TA", "Internship"]}
-      />
+      {filteredStudents.map((student) => (
+        <StudentCard key={student.id_etudiant} student={student} />
+      ))}
     </div>
   );
 }
