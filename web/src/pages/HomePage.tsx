@@ -8,14 +8,41 @@ import Button from "../components/widgets/Button.tsx";
 import OpportunitiesList from "../pages/views/OpportunitiesList.tsx";
 import ProfessorsList from "../pages/views/ProfessorsList.tsx";
 import StudentsList from "../pages/views/StudentsList.tsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { fetchTopDepartments } from "../API/updateDB/updateOpportunite.ts";
 
 export default function HomePage() {
+  const store = getStore();
+  const [departments, setDepartments] = useState<
+    { department: string; count: number }[]
+  >([]);
+
   useEffect(() => {
-    const store = getStore();
     store.setSelectedTab("Opportunities");
+    store.setFilter("All Opportunities");
+    store.setSearchQuery("");
+
+    async function fetchDepartments() {
+      const data = await fetchTopDepartments();
+      setDepartments(data);
+    }
+
+    fetchDepartments();
   }, []);
+
   const selectedTab = useStore((s) => s.selectedTab);
+  const nbrOfResults = useStore((s) => s.nbrOfResults);
+  const selectedDepartments = useStore((s) => s.selectedDepartments);
+
+  // function to pass to quick filter buttons to add/remove filter on click
+  const toggleDepartment = (dept: string) => {
+    const current = selectedDepartments;
+    if (current.includes(dept)) {
+      store.setSelectedDepartments(current.filter((d) => d !== dept)); // deselect
+    } else {
+      store.setSelectedDepartments([...current, dept]); // select
+    }
+  };
 
   return (
     <div className="flex flex-col mb-24">
@@ -23,48 +50,55 @@ export default function HomePage() {
 
       <div className="flex flex-col gap-2 md:flex-row mt-4 justify-center">
         <SearchBar />
-        <FilterList
-          bgColor="bg-light-blue"
-          hoverColor="hover:bg-dark-blue"
-          options={["All Opportunities", "Internships", "Scholarships"]}
-        />
+        {selectedTab === "Opportunities" && (
+          <FilterList
+            bgColor="bg-light-blue"
+            hoverColor="hover:bg-dark-blue"
+            options={[
+              "All Opportunities",
+              "Internship",
+              "Scholarship",
+              "TA",
+              "Research",
+            ]}
+            onSelect={(val) => store.setFilter(val)}
+          />
+        )}
       </div>
 
-      {/* Quick filters */}
+      {/* Quick filters buttons */}
       <div className="flex flex-col gap-2 mt-3">
-        <h2 className="font-semibold">Filter by departments</h2>
+        <h2 className="font-semibold">Filter by department</h2>
         <div className="flex gap-2 lg:gap-3 flex-wrap">
-          <Button
-            buttonText="Computer Science"
-            size="sm"
-            variant="secondary"
-            className="text-xs lg:text-sm"
-          />
-          <Button
-            buttonText="Psychology"
-            size="sm"
-            variant="secondary"
-            className="text-xs lg:text-sm"
-          />
-          <Button
-            buttonText="Econimics"
-            size="sm"
-            variant="secondary"
-            className="text-xs lg:text-sm"
-          />
+          {departments.map((d) => (
+            <Button
+              key={d.department}
+              buttonText={d.department}
+              size="sm"
+              variant="secondary"
+              isFilterButton
+              dataSelected={selectedDepartments.includes(d.department)}
+              className="text-xs lg:text-sm"
+              onClick={() => toggleDepartment(d.department)}
+            />
+          ))}
         </div>
       </div>
 
       {/* Search result text + order by */}
       <div className="mt-6 flex items-center">
         <h2 className="font-semibold text-[#848484] flex-3 text-sm lg:text-base">
-          Found 2 Opportunities
+          Found {nbrOfResults} {selectedTab}
         </h2>
-        <FilterList
-          bgColor="bg-light-gray"
-          hoverColor="hover:bg-dark-gray"
-          options={["Most recent", "Deadline soon"]}
-        />
+
+        {selectedTab === "Opportunities" && (
+          <FilterList
+            bgColor="bg-light-gray"
+            hoverColor="hover:bg-dark-gray"
+            options={["Most recent", "Deadline soon"]}
+            onSelect={(val) => store.setSortOrder(val)}
+          />
+        )}
       </div>
 
       {/* Content */}

@@ -6,12 +6,14 @@ type FilterProps = {
   options: string[];
   bgColor: string;
   hoverColor: string;
+  onSelect?: (value: string) => void;
 };
 
 function FilterList({
   options,
   bgColor = "bg-light-gray",
   hoverColor,
+  onSelect,
 }: FilterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(options[0]);
@@ -19,6 +21,9 @@ function FilterList({
   const handleSelect = (option: string) => {
     setSelected(option);
     setIsOpen(false);
+    if (onSelect) {
+      onSelect(option);
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 import type { Notification } from "../models/Notification";
-import type { Offer } from "../models/Offer";
+import type { Opportunity } from "../models/Opportunity";
 import type { User } from "../models/User";
 
 export type AppState = {
@@ -11,15 +11,30 @@ export type AppState = {
   };
 
   // Offers and submissions
-  offers: Offer[];
+  offers: Opportunity[];
   selectedOfferId: string | null;
   selectedSubmissionId: string | null;
 
   // Notifications
   notifications: Notification[];
 
-  // Selected tab on main view
+  // Selected tab on home page
   selectedTab: string;
+
+  // Selected filter on the dropdown list on home page
+  dropdownFilter: string;
+
+  // Selected SortBy option
+  sortOrder: string;
+
+  // Number of results from main page search
+  nbrOfResults: number;
+
+  // Global search on home page
+  searchQuery: string;
+
+  // Selected departments quick filters
+  selectedDepartments: string[];
 
   // Global Loading/Error
   global: {
@@ -51,6 +66,11 @@ const INITIAL_STATE: AppState = {
   selectedSubmissionId: null,
   notifications: [],
   selectedTab: "Opportunities", // default opportunities tab
+  searchQuery: "", // default search query (empty)
+  dropdownFilter: "All Opportunities", // default Filter empty (showing all opportunities)
+  sortOrder: "", // Default sort order
+  nbrOfResults: 0, // Default number of search results found
+  selectedDepartments: [], // empty no quickfilter selected yet
 };
 
 export class Store {
@@ -140,6 +160,34 @@ export class Store {
   // ===================== Main View Tabs ========================
   public setSelectedTab(tab: string) {
     this.setState({ selectedTab: tab }, "setSelectedTab");
+  }
+
+  // ===================== Search ===============================
+  public setSearchQuery(query: string) {
+    this.setState({ searchQuery: query }, "setSearchQuery");
+  }
+
+  // ==================== Dropdown list Filters ==================
+  public setFilter(filter: string) {
+    this.setState({ dropdownFilter: filter }, "setFilter");
+  }
+
+  // ==================== Sort Order =============================
+  public setSortOrder(sortBy: string) {
+    this.setState({ sortOrder: sortBy }, "setSortOrder");
+  }
+
+  // ==================== Sort Order =============================
+  public setNbrOfResults(nbr: number) {
+    this.setState({ nbrOfResults: nbr }, "setNbrOfResults");
+  }
+
+  // ==================== Quick filters =============================
+  public setSelectedDepartments(departments: string[]) {
+    this.setState(
+      { selectedDepartments: departments },
+      "setSelectedDepartments"
+    );
   }
 
   // ==================== NOTIFICATIONS ====================
