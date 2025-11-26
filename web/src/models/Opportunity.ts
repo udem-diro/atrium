@@ -2,11 +2,12 @@ export interface Opportunity {
   id_opportunite: number;
   titre: string | null;
   description: string;
+  department: string;
   exigences: string | null;
   ouvert: boolean | null;
   expiration: string | null;
   partenaire: string | null;
-  type: number;
+  type: "Internship" | "TA" | "Scholarship" | "Research";
   montant: number | null;
   emplacement: number | null;
   professeur_id: number;

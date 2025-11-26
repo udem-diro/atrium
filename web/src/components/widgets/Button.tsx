@@ -1,10 +1,14 @@
 import React from "react";
+import { getStore } from "../../utils/Store";
+import { useStore } from "../../hooks/useStore";
 
 type ButtonProps = {
   buttonText: string;
   variant?: "primary" | "secondary" | "outline" | "view";
   size?: "sm" | "md" | "lg" | "responsive" | "full";
   className?: string;
+  isFilterButton?: boolean;
+  dataSelected?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 function Button({
@@ -12,6 +16,8 @@ function Button({
   variant = "primary",
   size = "md",
   className = "",
+  isFilterButton = false,
+  dataSelected = false,
   ...props
 }: ButtonProps) {
   // Base shared styles
@@ -58,12 +64,17 @@ function Button({
       break;
   }
 
+  // If it’s a filter button and selected, override styles
+  if (isFilterButton && dataSelected) {
+    variantClasses = "bg-[#005DAA] text-white hover:bg-[#004985]";
+  }
+
   return (
     <button
       className={`${base} ${variantClasses} ${sizeClasses} ${className}`}
       {...props}
     >
-      {buttonText}
+      {buttonText} {isFilterButton && dataSelected && "x"}
     </button>
   );
 }

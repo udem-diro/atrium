@@ -21,8 +21,20 @@ export type AppState = {
   // Selected tab on home page
   selectedTab: string;
 
+  // Selected filter on the dropdown list on home page
+  dropdownFilter: string;
+
+  // Selected SortBy option
+  sortOrder: string;
+
+  // Number of results from main page search
+  nbrOfResults: number;
+
   // Global search on home page
   searchQuery: string;
+
+  // Selected departments quick filters
+  selectedDepartments: string[];
 
   // Global Loading/Error
   global: {
@@ -55,6 +67,10 @@ const INITIAL_STATE: AppState = {
   notifications: [],
   selectedTab: "Opportunities", // default opportunities tab
   searchQuery: "", // default search query (empty)
+  dropdownFilter: "All Opportunities", // default Filter empty (showing all opportunities)
+  sortOrder: "", // Default sort order
+  nbrOfResults: 0, // Default number of search results found
+  selectedDepartments: [], // empty no quickfilter selected yet
 };
 
 export class Store {
@@ -149,6 +165,29 @@ export class Store {
   // ===================== Search ===============================
   public setSearchQuery(query: string) {
     this.setState({ searchQuery: query }, "setSearchQuery");
+  }
+
+  // ==================== Dropdown list Filters ==================
+  public setFilter(filter: string) {
+    this.setState({ dropdownFilter: filter }, "setFilter");
+  }
+
+  // ==================== Sort Order =============================
+  public setSortOrder(sortBy: string) {
+    this.setState({ sortOrder: sortBy }, "setSortOrder");
+  }
+
+  // ==================== Sort Order =============================
+  public setNbrOfResults(nbr: number) {
+    this.setState({ nbrOfResults: nbr }, "setNbrOfResults");
+  }
+
+  // ==================== Quick filters =============================
+  public setSelectedDepartments(departments: string[]) {
+    this.setState(
+      { selectedDepartments: departments },
+      "setSelectedDepartments"
+    );
   }
 
   // ==================== NOTIFICATIONS ====================

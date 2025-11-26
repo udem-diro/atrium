@@ -14,7 +14,7 @@ function OppotunityCard({ opportunity }: OpportunityCardProps) {
     <div className="flex flex-col gap-3 lg:gap-4 justify-start p-4 md:p-5 2xl:p-10 border rounded-lg shadow-md hover:shadow-black/20 transition-shadow">
       <h4 className="text-[#AA0000]">Deadline: {opportunity.expiration}</h4>
       <div className="flex gap-2">
-        <Tag tagText="tag" />
+        <Tag tagText={opportunity.type} />
         <h2 className="font-semibold">{opportunity.titre}</h2>
       </div>
       <p className="text-[#838383] text-sm">{opportunity.description}</p>
