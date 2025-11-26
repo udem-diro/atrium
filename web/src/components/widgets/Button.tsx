@@ -1,6 +1,4 @@
 import React from "react";
-import { getStore } from "../../utils/Store";
-import { useStore } from "../../hooks/useStore";
 
 type ButtonProps = {
   buttonText: string;
