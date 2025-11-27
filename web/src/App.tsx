@@ -9,7 +9,6 @@ import AdminProfilePage from "./pages/AdminProfilePage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import SignupPage from "./pages/SignupPage.tsx";
 
-import { AuthProvider } from "./context/authContext";
 // import useStore from "./store/store.ts";
 // import { addEtudiant } from "./API/updateDB/updateEtudiants.ts";
 

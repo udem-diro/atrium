@@ -1,11 +1,11 @@
-import {supabase} from "../API/supabaseClient";
+import { supabase } from "../API/supabaseClient";
 
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface AuthContextType {
-  user: any | null;        // Supabase auth user
-  profile: any | null;     // Row from Etudiants table
-  loading: boolean;        // True until everything is loaded
+  user: any | null; // Supabase auth user
+  profile: any | null; // Row from Etudiants table
+  loading: boolean; // True until everything is loaded
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -41,6 +41,7 @@ export function AuthProvider({ children }: any) {
       async (event, session) => {
         const sessionUser = session?.user ?? null;
         setUser(sessionUser);
+        console.log(event);
 
         if (sessionUser) {
           await fetchProfile(sessionUser);

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import Button from "../components/widgets/Button";
 import Tag from "../components/widgets/Tag";
-import { FaBuilding, FaEnvelope, FaIdBadge, FaLink } from "react-icons/fa";
+import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import type { Student } from "../models/Student";
 import { getStudent } from "../API/updateDB/updateEtudiants";
@@ -27,11 +27,11 @@ function StudentProfilePage() {
     authUser?.email ||
     "Not available";
 
-  const displayId =
-    profile?.id_etudiant ||
-    connectedUser?.id ||
-    authUser?.id ||
-    "Not available";
+  // const displayId =
+  //   profile?.id_etudiant ||
+  //   connectedUser?.id ||
+  //   authUser?.id ||
+  //   "Not available";
 
   // const roleTag = connectedUser?.role || "Student";
   // const nameInitial = displayName?.charAt(0)?.toUpperCase() || "S";
