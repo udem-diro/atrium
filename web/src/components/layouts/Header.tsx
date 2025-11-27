@@ -2,8 +2,11 @@ import logo from "../../assets/logo_atrium.svg";
 import Button from "../widgets/Button.tsx";
 import { useNavigate } from "react-router-dom";
 
+//import { useAuthentification } from "../context/authContext.tsx";
 function Header() {
   const navigate = useNavigate();
+
+  //const { user, profile } = useAuthentification();
 
   return (
     <div className="mb-6">
@@ -26,7 +29,7 @@ function Header() {
             buttonText="My profile"
             variant="primary"
             size="responsive"
-            onClick={() => navigate("/admin")}
+            onClick={() => navigate("/student")}
           />
         </div>
       </div>
