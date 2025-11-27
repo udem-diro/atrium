@@ -1,15 +1,40 @@
 import { useParams } from "react-router-dom";
 import Button from "../components/widgets/Button";
 import Tag from "../components/widgets/Tag";
-import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
+import { FaBuilding, FaEnvelope, FaIdBadge, FaLink } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import type { Student } from "../models/Student";
 import { getStudent } from "../API/updateDB/updateEtudiants";
+import { useStore } from "../hooks/useStore";
+import { useAuth } from "../context/authContext";
 
 function StudentProfilePage() {
   const { id } = useParams();
   const [student, setStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState(true);
+  const connectedUser = useStore((s) => s.auth.connectedUser);
+  const { user: authUser, profile } = useAuth();
+
+  // const displayName =
+  //   connectedUser?.firstName ||
+  //   profile?.nom ||
+  //   authUser?.user_metadata?.firstName ||
+  //   "Student";
+
+  const displayEmail =
+    connectedUser?.email ||
+    profile?.courriel ||
+    authUser?.email ||
+    "Not available";
+
+  const displayId =
+    profile?.id_etudiant ||
+    connectedUser?.id ||
+    authUser?.id ||
+    "Not available";
+
+  // const roleTag = connectedUser?.role || "Student";
+  // const nameInitial = displayName?.charAt(0)?.toUpperCase() || "S";
 
   useEffect(() => {
     if (!id) return;
@@ -35,51 +60,50 @@ function StudentProfilePage() {
     <div className="flex flex-col md:grid md:grid-cols-[2.5fr_3fr] lg:grid-cols-[1fr_2fr] gap-4 justify-center mt-6">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
-          <div>
-            <div className="flex flex-col gap-2 items-center mt-4">
-              <div className="flex justify-center items-center rounded-full w-16 aspect-square bg-primary object-cover text-white font-semibold">
-                J
-                <img src={undefined} alt="" />
-              </div>
-
-              <h2 className="font-semibold">{student?.nom}</h2>
-              <Tag tagText="Bsc" />
-            </div>
-            <div className="flex items-center gap-4 mt-4">
-              <FaEnvelope className="text-2xl" />
-              <div>
-                <h3 className="text-gray-500">Email</h3>
-                <p className="font-semibold">{student?.courriel}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 mt-4">
-              <FaBuilding className="text-2xl" />
-              <div>
-                <h3 className="text-gray-500">Field of study</h3>
-                <p className="font-semibold">Bsc. Computer Science</p>
-              </div>
+          <div className="flex flex-col gap-2 items-center mt-4">
+            <div className="flex justify-center items-center rounded-full w-16 aspect-square bg-primary text-white font-semibold">
+              J
             </div>
 
-            <div className="flex flex-col gap-2 mt-4">
-              <Button
-                buttonText="Download CV"
-                variant="outline"
-                size="responsive"
-                onClick={() => {}}
-              />
-              <Button
-                buttonText="Contact Student"
-                variant="view"
-                size="responsive"
-                onClick={() => {}}
-              />
+            <h2 className="font-semibold">{student?.nom}</h2>
+            <Tag tagText="Bsc" />
+          </div>
+
+          <div className="flex items-center gap-4 mt-4">
+            <FaEnvelope className="text-2xl" />
+            <div>
+              <h3 className="text-gray-500">Email</h3>
+              <p className="font-semibold break-all">{displayEmail}</p>
             </div>
+          </div>
+
+          <div className="flex items-center gap-4 mt-4">
+            <FaBuilding className="text-2xl" />
+            <div>
+              <h3 className="text-gray-500">Field of study</h3>
+              <p className="font-semibold">Bsc. Computer Science</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 mt-4">
+            <Button
+              buttonText="Download CV"
+              variant="outline"
+              size="responsive"
+              onClick={() => {}}
+            />
+            <Button
+              buttonText="Contact Student"
+              variant="view"
+              size="responsive"
+              onClick={() => {}}
+            />
           </div>
         </div>
 
         <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
           <div className="flex gap-2 justify-start items-center mb-2">
-            <FaLink />{" "}
+            <FaLink />
             <h2 className="text-gray-500 font-semibold">External Links</h2>
           </div>
 
@@ -124,8 +148,8 @@ function StudentProfilePage() {
           <h2 className="text-gray-500 font-semibold">Projects</h2>
           <div className="flex flex-col gap-2 mb-4">
             <h3 className="text-black font-semibold">
-              Medical image classification system <br></br>
-              <span className="text-gray-400 text-sm ">2024</span>
+              Medical image classification system <br />
+              <span className="text-gray-400 text-sm">2024</span>
             </h3>
             <p className="text-gray-600">
               Developed a convolutional neural network to classify medical
@@ -137,13 +161,13 @@ function StudentProfilePage() {
               <Tag tagText="TensorFlow" />
               <Tag tagText="Keras" />
             </div>
-            <hr className="text-gray-200 mt-4 w-2/3  mx-auto" />
+            <hr className="text-gray-200 mt-4 w-2/3 mx-auto" />
           </div>
 
           <div className="flex flex-col gap-2 mb-4">
             <h3 className="text-black font-semibold">
-              Medical image classification system <br></br>
-              <span className="text-gray-400 text-sm ">2024</span>
+              Medical image classification system <br />
+              <span className="text-gray-400 text-sm">2024</span>
             </h3>
             <p className="text-gray-600">
               Developed a convolutional neural network to classify medical
@@ -155,13 +179,13 @@ function StudentProfilePage() {
               <Tag tagText="TensorFlow" />
               <Tag tagText="Keras" />
             </div>
-            <hr className="text-gray-200 mt-4 w-2/3  mx-auto" />
+            <hr className="text-gray-200 mt-4 w-2/3 mx-auto" />
           </div>
 
           <div className="flex flex-col gap-2 mb-4">
             <h3 className="text-black font-semibold">
-              Medical image classification system <br></br>
-              <span className="text-gray-400 text-sm ">2024</span>
+              Medical image classification system <br />
+              <span className="text-gray-400 text-sm">2024</span>
             </h3>
             <p className="text-gray-600">
               Developed a convolutional neural network to classify medical
