@@ -1,8 +1,28 @@
 import Button from "../components/widgets/Button";
 import Tag from "../components/widgets/Tag";
-import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
+import { FaBuilding, FaEnvelope, FaIdBadge, FaLink } from "react-icons/fa";
+import { useStore } from "../hooks/useStore";
+import { useAuth } from "../context/authContext";
 
 function StudentProfilePage() {
+  const connectedUser = useStore((s) => s.auth.connectedUser);
+  const { user: authUser, profile } = useAuth();
+
+  const displayName =
+    connectedUser?.firstName ||
+    profile?.nom ||
+    authUser?.user_metadata?.firstName ||
+    "Student";
+
+  const displayEmail =
+    connectedUser?.email || profile?.courriel || authUser?.email || "Not available";
+
+  const displayId =
+    profile?.id_etudiant || connectedUser?.id || authUser?.id || "Not available";
+
+  const roleTag = connectedUser?.role || "Student";
+  const nameInitial = displayName?.charAt(0)?.toUpperCase() || "S";
+
   return (
     <div className="flex flex-col md:grid md:grid-cols-[2.5fr_3fr] lg:grid-cols-[1fr_2fr] gap-4 justify-center mt-6">
       <div className="flex flex-col gap-4">
@@ -10,18 +30,25 @@ function StudentProfilePage() {
           <div>
             <div className="flex flex-col gap-2 items-center mt-4">
               <div className="flex justify-center items-center rounded-full w-16 aspect-square bg-primary object-cover text-white font-semibold">
-                J
+                {nameInitial}
                 <img src="" alt="" />
               </div>
 
-              <h2 className="font-semibold">John doe</h2>
-              <Tag tagText="Bsc" />
+              <h2 className="font-semibold">{displayName}</h2>
+              <Tag tagText={roleTag} />
             </div>
             <div className="flex items-center gap-4 mt-4">
               <FaEnvelope className="text-2xl" />
               <div>
                 <h3 className="text-gray-500">Email</h3>
-                <p className="font-semibold">john.doe@example.com</p>
+                <p className="font-semibold break-all">{displayEmail}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 mt-4">
+              <FaIdBadge className="text-2xl" />
+              <div>
+                <h3 className="text-gray-500">ID number</h3>
+                <p className="font-semibold break-all">{displayId}</p>
               </div>
             </div>
             <div className="flex items-center gap-4 mt-4">

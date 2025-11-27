@@ -29,7 +29,7 @@ function Header() {
             buttonText="My profile"
             variant="primary"
             size="responsive"
-            onClick={() => navigate("/admin")}
+            onClick={() => navigate("/student")}
           />
         </div>
       </div>

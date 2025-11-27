@@ -115,7 +115,7 @@ function SignupPage() {
           )}
 
           <div className="text-center">
-            <Button buttonText="Sign up" variant="view" size="full" />
+            <Button buttonText="Sign up" variant="view" size="full" type="submit"/>
           </div>
         </form>
 

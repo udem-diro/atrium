@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Button from "../components/widgets/Button";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../API/supabaseClient";
+import { getStore } from "../utils/Store";
+import type { User } from "../models/User";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const store = React.useMemo(() => getStore(), []);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -13,7 +16,7 @@ function LoginPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(e: any) {
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrorMsg("");
     setLoading(true);
@@ -32,13 +35,35 @@ function LoginPage() {
     }
 
     // 2. Check email verification (disabled in supabase settings)
-    if (!data.user?.email_confirmed_at) {
-      setErrorMsg("Please confirm your email before logging in.");
-      return;
-    }
+    //if (!data.user?.email_confirmed_at) {
+     // setErrorMsg("Please confirm your email before logging in.");
+    //  return;
+    //}
 
     // 3. Redirect to student dashboard or home
-    navigate("/dashboard");
+    const supabaseUser = data.user;
+
+    const connectedUser: User = {
+      id: supabaseUser?.user_metadata?.etudiantId || "", // Use the etudiantId instead of supabaseUser?.id
+      email: supabaseUser?.email || "",
+      firstName: supabaseUser?.user_metadata?.firstName || "",
+      lastName: supabaseUser?.user_metadata?.lastName || "",
+      role: supabaseUser?.user_metadata?.role || "",
+      createdAt: supabaseUser?.created_at || "",
+    };
+
+    store.setState(
+      {
+        auth: {
+          connectedUser,
+          isAuthenticated: true,
+          token: data.session?.access_token || null,
+        },
+      },
+      "login"
+    );
+
+    navigate("/");
   }
 
 
@@ -50,7 +75,7 @@ function LoginPage() {
           <h2 className="text-3xl font-semibold my-1">Welcome Back</h2>
         </div>
 
-        <form action="submit" className="my-4">
+        <form className="my-4" onSubmit={handleLogin}>
           <fieldset className="flex flex-col gap-4 mb-4">
             <input
               type="text"
@@ -80,14 +105,23 @@ function LoginPage() {
             </div>
 
             {errorMsg && (
-            <p className="text-red-600 text-sm mb-4 text-center">{errorMsg}</p>)}
+              <p className="text-red-600 text-sm mb-4 text-center">
+                {errorMsg}
+              </p>
+            )}
           </fieldset>
-          
-        </form>
 
-        <div className="text-center" onClick={handleLogin}>
-            <Button buttonText="Sign in" variant="view" size="full"/>
+          <div className="text-center">
+            <Button
+              buttonText={loading ? "Signing in..." : "Sign in"}
+              variant="view"
+              size="full"
+              type="submit"
+              disabled={loading}
+              onClick={() => navigate("/")}
+            />
           </div>
+        </form>
         <h3 className="text-center">
           Don't have an account?{" "}
           <span
