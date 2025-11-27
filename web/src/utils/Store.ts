@@ -134,13 +134,12 @@ export class Store {
 
   // ==================== AUTH ====================
 
-  public async login(email : string, password : string): Promise<void> {
-
+  public async login(email: string, password: string): Promise<void> {
     // 1. Sign in with Supabase
-      const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-      });
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     if (error) {
       this.setState(
@@ -175,7 +174,6 @@ export class Store {
       },
       "login"
     );
-
   }
 
   // ==================== SETTINGS ====================
@@ -209,12 +207,12 @@ export class Store {
     this.setState({ sortOrder: sortBy }, "setSortOrder");
   }
 
-  // ==================== Sort Order =============================
+  // ======== calculate number of results from search ============
   public setNbrOfResults(nbr: number) {
     this.setState({ nbrOfResults: nbr }, "setNbrOfResults");
   }
 
-  // ==================== Quick filters =============================
+  // ==================== Quick filters ==========================
   public setSelectedDepartments(departments: string[]) {
     this.setState(
       { selectedDepartments: departments },

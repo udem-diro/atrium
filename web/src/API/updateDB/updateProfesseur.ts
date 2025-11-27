@@ -44,14 +44,6 @@ export async function updateProfesseur(
     .select();
 }
 
-export async function getProfesseurById(id_professeur: number) {
-  return await supabase
-    .from("professeur")
-    .select("*")
-    .eq("id_professeur", id_professeur)
-    .single();
-}
-
 export async function getProfesseur(id: number) {
   const { data, error } = await supabase
     .from("professeur")
