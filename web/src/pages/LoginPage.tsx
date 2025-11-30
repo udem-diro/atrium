@@ -79,7 +79,6 @@ function LoginPage() {
               size="full"
               type="submit"
               disabled={loading}
-              onClick={() => navigate("/")}
             />
           </div>
         </form>

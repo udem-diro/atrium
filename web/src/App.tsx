@@ -17,31 +17,53 @@ function App() {
   const store = getStore();
 
   useEffect(() => {
-    // Fetch initial session and student profile
-    const fetchProfile = async () => {
-      const { data } = await supabase.auth.getSession();
+    let mounted = true;
+    let authSubscription: any;
 
-      if (!data.session?.user) {
+    const loadStudent = async (session: any) => {
+      if (!session?.user) {
         store.setConnectedUser(null);
-        console.log("No user connected at the moment");
         return;
       }
 
-      const { data: student, error } = await getStudentByUUID(
-        data.session.user.id
-      );
-      if (error) {
+      const { data: student, error } = await getStudentByUUID(session.user.id);
+      if (error || !student) {
         console.error("Could not load student profile", error);
         store.setConnectedUser(null);
         return;
       }
 
-      console.log(`user connected : ${student.courriel}`);
       store.setConnectedUser(student);
     };
 
-    fetchProfile();
-  }, [store]);
+    const init = async () => {
+      // 1️⃣ First load the existing session
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (mounted) {
+        await loadStudent(session);
+      }
+
+      // 2️⃣ Then attach ONE listener
+      const {
+        data: { subscription },
+      } = supabase.auth.onAuthStateChange(async (_event, session) => {
+        if (mounted) {
+          await loadStudent(session);
+        }
+      });
+
+      authSubscription = subscription;
+    };
+
+    init();
+
+    return () => {
+      mounted = false;
+      authSubscription?.unsubscribe();
+    };
+  }, []);
 
   return (
     <Router>
