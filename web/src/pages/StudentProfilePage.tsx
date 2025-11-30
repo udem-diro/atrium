@@ -5,36 +5,11 @@ import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import type { Student } from "../models/Student";
 import { getStudent } from "../API/updateDB/updateEtudiants";
-import { useStore } from "../hooks/useStore";
-import { useAuth } from "../context/authContext";
 
 function StudentProfilePage() {
   const { id } = useParams();
   const [student, setStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState(true);
-  const connectedUser = useStore((s) => s.auth.connectedUser);
-  const { user: authUser, profile } = useAuth();
-
-  // const displayName =
-  //   connectedUser?.firstName ||
-  //   profile?.nom ||
-  //   authUser?.user_metadata?.firstName ||
-  //   "Student";
-
-  const displayEmail =
-    connectedUser?.email ||
-    profile?.courriel ||
-    authUser?.email ||
-    "Not available";
-
-  // const displayId =
-  //   profile?.id_etudiant ||
-  //   connectedUser?.id ||
-  //   authUser?.id ||
-  //   "Not available";
-
-  // const roleTag = connectedUser?.role || "Student";
-  // const nameInitial = displayName?.charAt(0)?.toUpperCase() || "S";
 
   useEffect(() => {
     if (!id) return;
@@ -73,7 +48,7 @@ function StudentProfilePage() {
             <FaEnvelope className="text-2xl" />
             <div>
               <h3 className="text-gray-500">Email</h3>
-              <p className="font-semibold break-all">{displayEmail}</p>
+              <p className="font-semibold break-all">{student?.courriel}</p>
             </div>
           </div>
 

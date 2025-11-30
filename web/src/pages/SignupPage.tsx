@@ -1,70 +1,38 @@
 import { useState } from "react";
 import Button from "../components/widgets/Button";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../API/supabaseClient";
+import { signUp } from "../API/auth";
 
-function SignupPage() { 
+function SignupPage() {
   const navigate = useNavigate();
 
-    // form state
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+  // form state
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [studentId, setStudentId] = useState(0);
 
+  // error message state
+  const [errorMsg, setErrorMsg] = useState("");
 
-    const [etudiantId, setEtudiantId] = useState("");
+  async function handleSignup(e: React.FormEvent) {
+    e.preventDefault();
+    setErrorMsg("");
 
-    // error message state
-    const [errorMsg, setErrorMsg] = useState("");
-
-    async function handleSignup(e: any) {
-      e.preventDefault();
-      setErrorMsg("");
-
-      if (password !== confirmPassword) {
-        setErrorMsg("Passwords do not match.");
-        return;
-      }
-
-      //Create Supabase Auth user
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      });
-
-      if (error) {
-        setErrorMsg(error.message);
-        return;
-      }
-
-      //If signup worked, get user ID (UUID)
-      const userId = data.user?.id;
-      if (!userId) {
-        setErrorMsg("Unexpected error: no user ID returned.");
-        return;
-      }
-
-      // 4. Insert into your Etudiants table
-      // Make sure the primary key is correct: id_etudiant (your school ID)
-      const { error: insertError } = await supabase
-        .from("etudiants")
-        .insert([
-          {
-            id_etudiant: Number(etudiantId), // Class ID from school
-            courriel: email,
-            nom: email.split("@")[0],
-            programme_id: 5544, // exemple de programme id
-          },
-        ]);
-
-      if (insertError) {
-        setErrorMsg("Student account created, but profile insert failed: " + insertError.message);
-        return;
-      }
-
-      // 5. Redirect to login
-      navigate("/login");
+    if (password !== confirmPassword) {
+      setErrorMsg("Passwords do not match.");
+      return;
     }
+
+    try {
+      await signUp(email, password, fullName, studentId, null);
+      navigate("/login");
+    } catch (error: any) {
+      console.error("Signup error:", error);
+      setErrorMsg(error.message || "Signup failed. Please try again.");
+    }
+  }
 
   return (
     <div className="flex flex-col w-full md:w-[60%] lg:w-[50%] 2xl:w-[40%] mx-auto bg-[#EFF8FF] border border-gray-400 rounded-lg shadow-md px-2 md:px-8 lg:px-12 2xl:px-4 py-16 lg:py-24 mt-10">
@@ -76,12 +44,19 @@ function SignupPage() {
 
         <form className="my-4" onSubmit={handleSignup}>
           <fieldset className="flex flex-col gap-4 mb-10 lg:mb-14">
+            <input
+              type="text"
+              placeholder="Full name"
+              className="p-2 border border-gray-400 bg-white rounded-lg shadow-md text-sm lg:text-md"
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
 
             <input
               type="text"
               placeholder="School Student ID (ex: 20257343)"
               className="p-2 border border-gray-400 bg-white rounded-lg shadow-md text-sm lg:text-md"
-              onChange={(e) => setEtudiantId(e.target.value)}
+              onChange={(e) => setStudentId(Number(e.target.value))}
               required
             />
 
@@ -110,12 +85,15 @@ function SignupPage() {
             />
           </fieldset>
 
-          {errorMsg && (
-            <p className="text-red-600 text-sm mb-4">{errorMsg}</p>
-          )}
+          {errorMsg && <p className="text-red-600 text-sm mb-4">{errorMsg}</p>}
 
           <div className="text-center">
-            <Button buttonText="Sign up" variant="view" size="full" type="submit"/>
+            <Button
+              buttonText="Sign up"
+              variant="view"
+              size="full"
+              type="submit"
+            />
           </div>
         </form>
 
