@@ -1,71 +1,32 @@
 import React, { useState } from "react";
 import Button from "../components/widgets/Button";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../API/supabaseClient";
-import { getStore } from "../utils/Store";
-import type { User } from "../models/User";
+import { signIn } from "../API/auth";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const store = React.useMemo(() => getStore(), []);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  // UI state
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setErrorMsg("");
     setLoading(true);
 
-    // 1. Sign in with Supabase
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    setLoading(false);
-
-    if (error) {
-      setErrorMsg(error.message);
-      return;
+    // Sign in with Supabase
+    try {
+      await signIn(email, password);
+      setLoading(false);
+      navigate("/");
+    } catch (error: any) {
+      setErrorMsg(error.message || "Sign in failed. Please try again.");
+      setLoading(false);
     }
-
-    // 2. Check email verification (disabled in supabase settings)
-    //if (!data.user?.email_confirmed_at) {
-     // setErrorMsg("Please confirm your email before logging in.");
-    //  return;
-    //}
-
-    // 3. Redirect to student dashboard or home
-    const supabaseUser = data.user;
-
-    const connectedUser: User = {
-      id: supabaseUser?.user_metadata?.etudiantId || "", // Use the etudiantId instead of supabaseUser?.id
-      email: supabaseUser?.email || "",
-      firstName: supabaseUser?.user_metadata?.firstName || "",
-      lastName: supabaseUser?.user_metadata?.lastName || "",
-      role: supabaseUser?.user_metadata?.role || "",
-      createdAt: supabaseUser?.created_at || "",
-    };
-
-    store.setState(
-      {
-        auth: {
-          connectedUser,
-          isAuthenticated: true,
-          token: data.session?.access_token || null,
-        },
-      },
-      "login"
-    );
-
-    navigate("/");
   }
-
 
   return (
     <div className="flex flex-col  w-full md:w-[60%] lg:w-[50%] 2xl:w-[40%] mx-auto bg-[#EFF8FF] border border-gray-400 rounded-lg shadow-md px-2 md:px-8 lg:px-12 2xl:px-4 py-16 lg:py-24  mt-10">

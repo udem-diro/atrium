@@ -1,14 +1,12 @@
 import type { Notification } from "../models/Notification";
 import type { Opportunity } from "../models/Opportunity";
 import type { User } from "../models/User";
-import { supabase } from "../API/supabaseClient";
 
 export type AppState = {
   // Auth & User
   auth: {
     connectedUser: User | null;
     isAuthenticated: boolean;
-    token: string | null;
   };
 
   // Offers and submissions
@@ -53,7 +51,6 @@ const INITIAL_STATE: AppState = {
   auth: {
     connectedUser: null,
     isAuthenticated: false,
-    token: null,
   },
   global: {
     isLoading: false,
@@ -133,49 +130,13 @@ export class Store {
   }
 
   // ==================== AUTH ====================
-
-  public async login(email : string, password : string): Promise<void> {
-
-    // 1. Sign in with Supabase
-      const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-      });
-
-    if (error) {
-      this.setState(
-        {
-          global: { ...this.state.global, error },
-        },
-        "login"
-      );
-      return;
-    }
-
-    const supabaseUser = data.user;
-    const token = data.session?.access_token || null;
-
-    // Convert Supabase user to your User type or fetch the full user profile
-    const user: User = {
-      id: supabaseUser?.id,
-      email: supabaseUser?.email || "",
-      firstName: supabaseUser?.user_metadata?.firstName || "",
-      lastName: supabaseUser?.user_metadata?.lastName || "",
-      role: supabaseUser?.user_metadata?.role || "student",
-      createdAt: supabaseUser?.created_at || "",
-    };
-
-    this.setState(
-      {
-        auth: {
-          connectedUser: user,
-          isAuthenticated: true,
-          token,
-        },
+  public setConnectedUser(user: User | null) {
+    this.setState({
+      auth: {
+        connectedUser: user,
+        isAuthenticated: !!user,
       },
-      "login"
-    );
-
+    });
   }
 
   // ==================== SETTINGS ====================
