@@ -1,9 +1,24 @@
 import logo from "../../assets/logo_atrium.svg";
 import Button from "../widgets/Button.tsx";
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../../hooks/useStore.ts";
+import { signOut } from "../../API/auth.ts";
+import { getStore } from "../../utils/Store.ts";
 
 function Header() {
   const navigate = useNavigate();
+  const isConnected = useStore((s) => s.auth.isAuthenticated);
+
+  async function handleSignOut() {
+    try {
+      console.log("signing out ...");
+      await signOut();
+      console.log("signed out!");
+      getStore().setConnectedUser(null);
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  }
 
   return (
     <div className="mb-6">
@@ -15,19 +30,32 @@ function Header() {
           <img className="w-full h-auto" src={logo} alt="logo"></img>
         </div>
         <div className="flex gap-2">
-          <Button
-            buttonText="Log in"
-            variant="view"
-            size="responsive"
-            onClick={() => navigate("/login")}
-          />
+          {isConnected && (
+            <Button
+              buttonText="Log out"
+              variant="view"
+              size="responsive"
+              onClick={handleSignOut}
+            />
+          )}
 
-          <Button
-            buttonText="My profile"
-            variant="primary"
-            size="responsive"
-            onClick={() => navigate("/student")}
-          />
+          {!isConnected && (
+            <Button
+              buttonText="Log in"
+              variant="view"
+              size="responsive"
+              onClick={() => navigate("/login")}
+            />
+          )}
+
+          {isConnected && (
+            <Button
+              buttonText="My profile"
+              variant="primary"
+              size="responsive"
+              onClick={() => navigate("/student")}
+            />
+          )}
         </div>
       </div>
 

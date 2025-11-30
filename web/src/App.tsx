@@ -8,11 +8,41 @@ import StudentProfilePage from "./pages/StudentProfilePage.tsx";
 import AdminProfilePage from "./pages/AdminProfilePage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import SignupPage from "./pages/SignupPage.tsx";
-
-// import useStore from "./store/store.ts";
-// import { addEtudiant } from "./API/updateDB/updateEtudiants.ts";
+import { useEffect } from "react";
+import { supabase } from "./API/supabaseClient.tsx";
+import { getStore } from "./utils/Store.ts";
+import { getStudentByUUID } from "./API/updateDB/updateEtudiants.ts";
 
 function App() {
+  const store = getStore();
+
+  useEffect(() => {
+    // Fetch initial session and student profile
+    const fetchProfile = async () => {
+      const { data } = await supabase.auth.getSession();
+
+      if (!data.session?.user) {
+        store.setConnectedUser(null);
+        console.log("No user connected at the moment");
+        return;
+      }
+
+      const { data: student, error } = await getStudentByUUID(
+        data.session.user.id
+      );
+      if (error) {
+        console.error("Could not load student profile", error);
+        store.setConnectedUser(null);
+        return;
+      }
+
+      console.log(`user connected : ${student.courriel}`);
+      store.setConnectedUser(student);
+    };
+
+    fetchProfile();
+  }, [store]);
+
   return (
     <Router>
       <div className="flex flex-col">

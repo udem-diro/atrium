@@ -24,11 +24,12 @@ export async function updateEtudiant(
   etudiant: {
     courriel: string;
     nom: string;
-    programme_id: number; 
+    programme_id: number;
     liens?: string;
     cv_url?: string;
     photo_profil?: string;
-  }) {
+  }
+) {
   const { data, error } = await supabase
     .from("etudiants")
     .update(etudiant)
@@ -38,8 +39,6 @@ export async function updateEtudiant(
   if (error) throw error;
   return data?.[0];
 }
-
-
 
 // Delete a student
 export async function deleteEtudiant(id_etudiant: number) {
@@ -57,4 +56,15 @@ export async function getStudent(id_etudiant: number) {
     .single();
 
   return data;
+}
+
+// Gets a student by UUID ( the same as auth.user table)
+export async function getStudentByUUID(id: string) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .select("*")
+    .eq("UUID", id)
+    .single();
+
+  return { data, error };
 }
