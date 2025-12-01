@@ -9,6 +9,7 @@ import { useStore } from "../hooks/useStore";
 import EditableAbout from "../components/student_profile_components/EditableAbout";
 import EditableInterests from "../components/student_profile_components/EditableInterests";
 import EditableExternalLinks from "../components/student_profile_components/EditableExternalLinks";
+import EditableCompletedCourses from "../components/student_profile_components/EditableCompletedCourses";
 
 function StudentProfilePage() {
   const { id } = useParams();
@@ -35,6 +36,12 @@ function StudentProfilePage() {
   const handleLinksUpdate = (newLinks: Link[]) => {
     if (student) {
       setStudent({ ...student, liens: newLinks });
+    }
+  };
+
+  const handleCoursesUpdate = (newCourses: string[]) => {
+    if (student) {
+      setStudent({ ...student, cours_completes: newCourses });
     }
   };
 
@@ -126,15 +133,12 @@ function StudentProfilePage() {
           onUpdate={handleInterestsUpdate}
         />
 
-        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
-          <h2 className="text-gray-500 font-semibold">Completed courses</h2>
-          <ul className="grid grid-cols-2 gap-2">
-            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT1215</li>
-            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT3700</li>
-            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT2255</li>
-            <li className="bg-light-gray py-1 px-2 rounded-lg">IFT3355</li>
-          </ul>
-        </div>
+        <EditableCompletedCourses
+          studentId={student?.id_etudiant!}
+          initialCourses={student?.cours_completes ?? null}
+          isOwnProfile={isOwnProfile}
+          onUpdate={handleCoursesUpdate}
+        />
 
         <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md text-sm">
           <h2 className="text-gray-500 font-semibold">Projects</h2>
