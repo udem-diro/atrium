@@ -3,11 +3,12 @@ import Button from "../components/widgets/Button";
 import Tag from "../components/widgets/Tag";
 import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import type { Student } from "../models/Student";
+import type { Student, Link, Project } from "../models/Student";
 import { getStudent } from "../API/updateDB/updateEtudiants";
 import { useStore } from "../hooks/useStore";
 import EditableAbout from "../components/student_profile_components/EditableAbout";
 import EditableInterests from "../components/student_profile_components/EditableInterests";
+import EditableExternalLinks from "../components/student_profile_components/EditableExternalLinks";
 
 function StudentProfilePage() {
   const { id } = useParams();
@@ -28,6 +29,12 @@ function StudentProfilePage() {
   const handleInterestsUpdate = (newInterests: string[]) => {
     if (student) {
       setStudent({ ...student, interets_academiques: newInterests });
+    }
+  };
+
+  const handleLinksUpdate = (newLinks: Link[]) => {
+    if (student) {
+      setStudent({ ...student, liens: newLinks });
     }
   };
 
@@ -96,16 +103,12 @@ function StudentProfilePage() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
-          <div className="flex gap-2 justify-start items-center mb-2">
-            <FaLink />
-            <h2 className="text-gray-500 font-semibold">External Links</h2>
-          </div>
-
-          <Button buttonText="github" size="responsive" variant="outline" />
-          <Button buttonText="linkedin" size="responsive" variant="outline" />
-          <Button buttonText="Portfolio" size="responsive" variant="outline" />
-        </div>
+        <EditableExternalLinks
+          studentId={student?.id_etudiant!}
+          initialLinks={student?.liens ?? null}
+          isOwnProfile={isOwnProfile}
+          onUpdate={handleLinksUpdate}
+        />
       </div>
 
       <div className="flex flex-col gap-4">
