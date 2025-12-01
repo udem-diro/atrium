@@ -66,5 +66,10 @@ export async function getStudentByUUID(id: string) {
     .eq("UUID", id)
     .single();
 
+  // add the role field to match the interface Store is expecting to set the connected user
+  if (data) {
+    return { data: { ...data, role: "student" as const }, error: null };
+  }
+
   return { data, error };
 }

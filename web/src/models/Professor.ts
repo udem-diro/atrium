@@ -7,4 +7,5 @@ export interface Professor {
   bio: string | null;
   photo_profil: string | null;
   last_modified: string | null;
+  role: "professor";
 }

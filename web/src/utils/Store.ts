@@ -1,11 +1,12 @@
 import type { Notification } from "../models/Notification";
 import type { Opportunity } from "../models/Opportunity";
-import type { User } from "../models/User";
+import type { Student } from "../models/Student";
+import type { Professor } from "../models/Professor";
 
 export type AppState = {
   // Auth & User
   auth: {
-    connectedUser: User | null;
+    connectedUser: Student | Professor | null;
     isAuthenticated: boolean;
   };
 
@@ -130,7 +131,7 @@ export class Store {
   }
 
   // ==================== AUTH ====================
-  public setConnectedUser(user: User | null) {
+  public setConnectedUser(user: Student | Professor | null) {
     this.setState({
       auth: {
         connectedUser: user,
