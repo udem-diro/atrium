@@ -1,4 +1,5 @@
 import { supabase } from "../supabaseClient";
+import type { Link, Project } from "../../models/Student";
 
 export async function addEtudiant(etudiant: {
   id_etudiant: number;
@@ -72,4 +73,78 @@ export async function getStudentByUUID(id: string) {
   }
 
   return { data, error };
+}
+
+// Update student bio
+export async function updateStudentBio(id_etudiant: number, bio: string) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ bio })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data: { ...data, role: "student" as const }, error: null };
+}
+
+// Update academic interests
+export async function updateStudentInterests(
+  id_etudiant: number,
+  interets_academiques: string[]
+) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ interets_academiques })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data: { ...data, role: "student" as const }, error: null };
+}
+
+// Update completed courses
+export async function updateStudentCourses(
+  id_etudiant: number,
+  cours_completes: string[]
+) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ cours_completes })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data: { ...data, role: "student" as const }, error: null };
+}
+
+// Update projects
+export async function updateStudentProjects(
+  id_etudiant: number,
+  projets: Project[]
+) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ projets })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data: { ...data, role: "student" as const }, error: null };
+}
+
+// Update external links
+export async function updateStudentLinks(id_etudiant: number, liens: Link[]) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ liens })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return { data: { ...data, role: "student" as const }, error: null };
 }

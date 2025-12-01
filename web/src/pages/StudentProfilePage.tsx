@@ -5,11 +5,24 @@ import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import type { Student } from "../models/Student";
 import { getStudent } from "../API/updateDB/updateEtudiants";
+import { useStore } from "../hooks/useStore";
+import EditableAbout from "../components/student_profile_components/EditableAbout";
 
 function StudentProfilePage() {
   const { id } = useParams();
   const [student, setStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const connectedUser = useStore((s) => s.auth.connectedUser);
+  const isOwnProfile =
+    connectedUser?.role === "student" &&
+    connectedUser?.id_etudiant === student?.id_etudiant;
+
+  const handleBioUpdate = (newBio: string) => {
+    if (student) {
+      setStudent({ ...student, bio: newBio });
+    }
+  };
 
   useEffect(() => {
     if (!id) return;
@@ -89,15 +102,12 @@ function StudentProfilePage() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
-          <h2 className="text-gray-500 font-semibold">About</h2>
-          <p className="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            porttitor nisi lectus, a lacinia nibh volutpat a. Donec pulvinar
-            eros et lectus finibus egestas. Morbi blandit lacinia nisi, a
-            viverra metus. Suspendisse varius ex fringilla lorem facilisis
-          </p>
-        </div>
+        <EditableAbout
+          studentId={student?.id_etudiant!}
+          initialBio={student?.bio ?? null}
+          isOwnProfile={isOwnProfile}
+          onUpdate={handleBioUpdate}
+        />
 
         <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
           <h2 className="text-gray-500 font-semibold">Academic Interests</h2>
