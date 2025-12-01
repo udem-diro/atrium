@@ -29,7 +29,7 @@ function EditableAbout({
 
     setIsSaving(true);
     try {
-      const { data, error } = await updateStudentBio(studentId, bio);
+      const { error } = await updateStudentBio(studentId, bio);
 
       if (error) throw error;
 
