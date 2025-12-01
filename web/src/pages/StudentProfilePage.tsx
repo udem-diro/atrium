@@ -10,6 +10,7 @@ import EditableAbout from "../components/student_profile_components/EditableAbou
 import EditableInterests from "../components/student_profile_components/EditableInterests";
 import EditableExternalLinks from "../components/student_profile_components/EditableExternalLinks";
 import EditableCompletedCourses from "../components/student_profile_components/EditableCompletedCourses";
+import EditableProjects from "../components/student_profile_components/EditableProjects";
 
 function StudentProfilePage() {
   const { id } = useParams();
@@ -42,6 +43,12 @@ function StudentProfilePage() {
   const handleCoursesUpdate = (newCourses: string[]) => {
     if (student) {
       setStudent({ ...student, cours_completes: newCourses });
+    }
+  };
+
+  const handleProjectsUpdate = (newProjects: Project[]) => {
+    if (student) {
+      setStudent({ ...student, projets: newProjects });
     }
   };
 
@@ -140,61 +147,12 @@ function StudentProfilePage() {
           onUpdate={handleCoursesUpdate}
         />
 
-        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md text-sm">
-          <h2 className="text-gray-500 font-semibold">Projects</h2>
-          <div className="flex flex-col gap-2 mb-4">
-            <h3 className="text-black font-semibold">
-              Medical image classification system <br />
-              <span className="text-gray-400 text-sm">2024</span>
-            </h3>
-            <p className="text-gray-600">
-              Developed a convolutional neural network to classify medical
-              images for early disease detection. Achievec 94% accuracy.
-            </p>
-            <h4 className="font-semibold">Technologies</h4>
-            <div className="flex gap-2 flex-wrap">
-              <Tag tagText="Python" />
-              <Tag tagText="TensorFlow" />
-              <Tag tagText="Keras" />
-            </div>
-            <hr className="text-gray-200 mt-4 w-2/3 mx-auto" />
-          </div>
-
-          <div className="flex flex-col gap-2 mb-4">
-            <h3 className="text-black font-semibold">
-              Medical image classification system <br />
-              <span className="text-gray-400 text-sm">2024</span>
-            </h3>
-            <p className="text-gray-600">
-              Developed a convolutional neural network to classify medical
-              images for early disease detection. Achievec 94% accuracy.
-            </p>
-            <h4 className="font-semibold">Technologies</h4>
-            <div className="flex gap-2 flex-wrap">
-              <Tag tagText="Python" />
-              <Tag tagText="TensorFlow" />
-              <Tag tagText="Keras" />
-            </div>
-            <hr className="text-gray-200 mt-4 w-2/3 mx-auto" />
-          </div>
-
-          <div className="flex flex-col gap-2 mb-4">
-            <h3 className="text-black font-semibold">
-              Medical image classification system <br />
-              <span className="text-gray-400 text-sm">2024</span>
-            </h3>
-            <p className="text-gray-600">
-              Developed a convolutional neural network to classify medical
-              images for early disease detection. Achievec 94% accuracy.
-            </p>
-            <h4 className="font-semibold">Technologies</h4>
-            <div className="flex gap-2 flex-wrap">
-              <Tag tagText="Python" />
-              <Tag tagText="TensorFlow" />
-              <Tag tagText="Keras" />
-            </div>
-          </div>
-        </div>
+        <EditableProjects
+          studentId={student?.id_etudiant!}
+          initialProjects={student?.projets ?? null}
+          isOwnProfile={isOwnProfile}
+          onUpdate={handleProjectsUpdate}
+        />
       </div>
     </div>
   );
