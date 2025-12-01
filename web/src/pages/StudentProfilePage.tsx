@@ -7,6 +7,7 @@ import type { Student } from "../models/Student";
 import { getStudent } from "../API/updateDB/updateEtudiants";
 import { useStore } from "../hooks/useStore";
 import EditableAbout from "../components/student_profile_components/EditableAbout";
+import EditableInterests from "../components/student_profile_components/EditableInterests";
 
 function StudentProfilePage() {
   const { id } = useParams();
@@ -21,6 +22,12 @@ function StudentProfilePage() {
   const handleBioUpdate = (newBio: string) => {
     if (student) {
       setStudent({ ...student, bio: newBio });
+    }
+  };
+
+  const handleInterestsUpdate = (newInterests: string[]) => {
+    if (student) {
+      setStudent({ ...student, interets_academiques: newInterests });
     }
   };
 
@@ -109,15 +116,12 @@ function StudentProfilePage() {
           onUpdate={handleBioUpdate}
         />
 
-        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
-          <h2 className="text-gray-500 font-semibold">Academic Interests</h2>
-          <div className="flex gap-2 flex-wrap">
-            <Tag tagText="Ai" />
-            <Tag tagText="Web Development" />
-            <Tag tagText="Mobile Development" />
-            <Tag tagText="Data Science" />
-          </div>
-        </div>
+        <EditableInterests
+          studentId={student?.id_etudiant!}
+          initialInterests={student?.interets_academiques ?? null}
+          isOwnProfile={isOwnProfile}
+          onUpdate={handleInterestsUpdate}
+        />
 
         <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
           <h2 className="text-gray-500 font-semibold">Completed courses</h2>
