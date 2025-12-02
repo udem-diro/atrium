@@ -1,7 +1,4 @@
 import { useParams } from "react-router-dom";
-import Button from "../components/widgets/Button";
-import Tag from "../components/widgets/Tag";
-import { FaBuilding, FaEnvelope, FaLink } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import type { Student, Link, Project } from "../models/Student";
 import { getStudent } from "../API/updateDB/updateEtudiants";
