@@ -148,3 +148,45 @@ export async function updateStudentLinks(id_etudiant: number, liens: Link[]) {
   if (error) throw error;
   return { data: { ...data, role: "student" as const }, error: null };
 }
+
+// Update profile picture URL
+export async function updateStudentProfilePicture(
+  id_etudiant: number,
+  photo_profil: string
+) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ photo_profil })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  return { data, error };
+}
+
+// Update CV URL
+export async function updateStudentCV(id_etudiant: number, cv_url: string) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ cv_url })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  return { data, error };
+}
+
+// Update field of study
+export async function updateStudentFieldOfStudy(
+  id_etudiant: number,
+  domaine_etude: string
+) {
+  const { data, error } = await supabase
+    .from("etudiants")
+    .update({ domaine_etude })
+    .eq("id_etudiant", id_etudiant)
+    .select()
+    .single();
+
+  return { data, error };
+}

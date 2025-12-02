@@ -11,6 +11,7 @@ import EditableInterests from "../components/student_profile_components/Editable
 import EditableExternalLinks from "../components/student_profile_components/EditableExternalLinks";
 import EditableCompletedCourses from "../components/student_profile_components/EditableCompletedCourses";
 import EditableProjects from "../components/student_profile_components/EditableProjects";
+import EditableProfileInfo from "../components/student_profile_components/EditableProfileInfo";
 
 function StudentProfilePage() {
   const { id } = useParams();
@@ -52,6 +53,12 @@ function StudentProfilePage() {
     }
   };
 
+  const handleProfileInfoUpdate = (updatedData: Partial<Student>) => {
+    if (student) {
+      setStudent({ ...student, ...updatedData });
+    }
+  };
+
   useEffect(() => {
     if (!id) return;
 
@@ -71,51 +78,16 @@ function StudentProfilePage() {
   }, [id]);
 
   if (loading) return <h1>loading...</h1>;
+  if (!student) return <h1>Student not found</h1>;
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[2.5fr_3fr] lg:grid-cols-[1fr_2fr] gap-4 justify-center mt-6">
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col justify-center gap-2 p-6 border border-gray-400 rounded-lg shadow-md">
-          <div className="flex flex-col gap-2 items-center mt-4">
-            <div className="flex justify-center items-center rounded-full w-16 aspect-square bg-primary text-white font-semibold">
-              J
-            </div>
-
-            <h2 className="font-semibold">{student?.nom}</h2>
-            <Tag tagText="Bsc" />
-          </div>
-
-          <div className="flex items-center gap-4 mt-4">
-            <FaEnvelope className="text-2xl" />
-            <div>
-              <h3 className="text-gray-500">Email</h3>
-              <p className="font-semibold break-all">{student?.courriel}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 mt-4">
-            <FaBuilding className="text-2xl" />
-            <div>
-              <h3 className="text-gray-500">Field of study</h3>
-              <p className="font-semibold">Bsc. Computer Science</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2 mt-4">
-            <Button
-              buttonText="Download CV"
-              variant="outline"
-              size="responsive"
-              onClick={() => {}}
-            />
-            <Button
-              buttonText="Contact Student"
-              variant="view"
-              size="responsive"
-              onClick={() => {}}
-            />
-          </div>
-        </div>
+        <EditableProfileInfo
+          student={student}
+          isOwnProfile={isOwnProfile}
+          onUpdate={handleProfileInfoUpdate}
+        />
 
         <EditableExternalLinks
           studentId={student?.id_etudiant!}
