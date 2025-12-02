@@ -52,6 +52,21 @@ export async function getProfesseurById(id_professeur: number) {
     .single();
 }
 
+export async function getProfessorByUUID(id: string) {
+  const { data, error } = await supabase
+    .from("professeurs")
+    .select("*")
+    .eq("UUID", id)
+    .single();
+
+  // Add the role field to match the interface
+  if (data) {
+    return { data: { ...data, role: "professor" as const }, error: null };
+  }
+
+  return { data: null, error };
+}
+
 export async function getProfesseur(id: number) {
   const { data, error } = await supabase
     .from("professeur")

@@ -215,7 +215,7 @@ function EditableProfileInfo({
             className="rounded-full w-24 h-24 object-cover"
           />
         ) : (
-          <div className="flex justify-center items-center rounded-full w-16 h-16 bg-primary text-white font-semibold">
+          <div className="flex justify-center items-center rounded-full w-24 h-24 bg-primary text-white font-semibold">
             {getInitials(student.nom)}
           </div>
         )}

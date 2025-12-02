@@ -16,6 +16,7 @@ export async function signUp(
         fullName: fullName ?? "", // optional, fallback to empty
         programmeId: programmeId ?? null, // optional, fallback to 0
         studentId: studentId ?? 0,
+        role: "student",
       },
     },
   });

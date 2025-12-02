@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { supabase } from "./API/supabaseClient.tsx";
 import { getStore } from "./utils/Store.ts";
 import { getStudentByUUID } from "./API/updateDB/updateEtudiants.ts";
+import { getProfessorByUUID } from "./API/updateDB/updateProfesseur.ts";
 
 function App() {
   const store = getStore();
@@ -20,37 +21,67 @@ function App() {
     let mounted = true;
     let authSubscription: any;
 
-    const loadStudent = async (session: any) => {
+    const loadUser = async (session: any) => {
       if (!session?.user) {
         store.setConnectedUser(null);
         return;
       }
 
-      const { data: student, error } = await getStudentByUUID(session.user.id);
-      if (error || !student) {
-        console.error("Could not load student profile", error);
-        store.setConnectedUser(null);
-        return;
+      // Check the role from user metadata
+      const userRole = session.user.user_metadata?.role;
+
+      if (userRole === "student") {
+        // Try to find student
+        const { data: student, error } = await getStudentByUUID(
+          session.user.id
+        );
+        if (student && !error) {
+          store.setConnectedUser(student);
+          return;
+        }
+      } else if (userRole === "professor") {
+        // Try to find professor
+        const { data: professor, error } = await getProfessorByUUID(
+          session.user.id
+        );
+        if (professor && !error) {
+          store.setConnectedUser(professor);
+          return;
+        }
+      } else {
+        // Fallback: try both if role is not set (for existing users)
+        const { data: student } = await getStudentByUUID(session.user.id);
+        if (student) {
+          store.setConnectedUser(student);
+          return;
+        }
+
+        const { data: professor } = await getProfessorByUUID(session.user.id);
+        if (professor) {
+          store.setConnectedUser(professor);
+          return;
+        }
       }
 
-      store.setConnectedUser(student);
+      console.error("User not found in students or professors");
+      store.setConnectedUser(null);
     };
 
     const init = async () => {
-      // 1️⃣ First load the existing session
+      // 1. First load the existing session
       const {
         data: { session },
       } = await supabase.auth.getSession();
       if (mounted) {
-        await loadStudent(session);
+        await loadUser(session);
       }
 
-      // 2️⃣ Then attach ONE listener
+      // 2.  Then attach supabase listener
       const {
         data: { subscription },
       } = supabase.auth.onAuthStateChange(async (_event, session) => {
         if (mounted) {
-          await loadStudent(session);
+          await loadUser(session);
         }
       });
 
