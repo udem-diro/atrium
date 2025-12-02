@@ -44,17 +44,9 @@ export async function updateProfesseur(
     .select();
 }
 
-export async function getProfesseurById(id_professeur: number) {
-  return await supabase
-    .from("professeur")
-    .select("*")
-    .eq("id_professeur", id_professeur)
-    .single();
-}
-
 export async function getProfessorByUUID(id: string) {
   const { data, error } = await supabase
-    .from("professeurs")
+    .from("professeur")
     .select("*")
     .eq("UUID", id)
     .single();
@@ -76,4 +68,43 @@ export async function getProfesseur(id: number) {
 
   if (error) throw error;
   return data;
+}
+
+export async function updateProfessorInfo(
+  professorId: number,
+  updatedData: Partial<{
+    nom: string;
+    courriel: string;
+    site_web: string | null;
+    disponible: boolean;
+    bio: string | null;
+    photo_profil: string | null;
+  }>
+) {
+  const { data, error } = await supabase
+    .from("professeur")
+    .update({
+      ...updatedData,
+      last_modified: new Date().toISOString(),
+    })
+    .eq("id_professeur", professorId)
+    .select()
+    .single();
+
+  return { data, error };
+}
+
+// Update profile picture
+export async function updateProfessorProfilePicture(
+  professorId: number,
+  url: string
+) {
+  const { data, error } = await supabase
+    .from("professeur")
+    .update({ photo_profil: url, last_modified: new Date().toISOString() })
+    .eq("id_professeur", professorId)
+    .select()
+    .single();
+
+  return { data, error };
 }

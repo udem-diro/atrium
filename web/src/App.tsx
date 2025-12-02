@@ -15,6 +15,37 @@ import { getStudentByUUID } from "./API/updateDB/updateEtudiants.ts";
 import { getProfessorByUUID } from "./API/updateDB/updateProfesseur.ts";
 
 function App() {
+  // useEffect(() => {
+  //   // ONLY FOR TESTING - comment after first run
+  //   async function createTestProfessor() {
+  //     try {
+  //       const email = "professor@gmail.com";
+  //       const password = "Test1234!";
+
+  //       const { data, error } = await supabase.auth.signUp({
+  //         email,
+  //         password,
+  //         options: {
+  //           data: {
+  //             role: "professor", // Only role in metadata
+  //           },
+  //         },
+  //       });
+
+  //       if (error) {
+  //         console.error("Error creating professor:", error);
+  //       } else {
+  //         console.log("Professor created:", data);
+  //       }
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+
+  //   // Run only once
+  //   createTestProfessor();
+  // }, []);
+
   const store = getStore();
 
   useEffect(() => {

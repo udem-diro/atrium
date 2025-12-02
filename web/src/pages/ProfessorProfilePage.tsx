@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TabsContainer from "../components/layouts/TabsContainer";
-import ProfessorProfileCard from "../components/ProfessorProfileCard";
+import EditableProfile from "../components/professor_profile_components/EditableProfile.tsx";
 import { useStore } from "../hooks/useStore.ts";
 import { getStore } from "../utils/Store.ts";
 import ProfessorAvailabilityTab from "./views/ProfessorAvailabilityTab.tsx";
@@ -12,10 +12,21 @@ import { getProfesseur } from "../API/updateDB/updateProfesseur.ts";
 
 function ProfessorProfilePage() {
   const selectedTab = useStore((s) => s.selectedTab);
+  const connectedUser = useStore((s) => s.auth.connectedUser);
   const { id } = useParams();
 
   const [professor, setProfessor] = useState<Professor | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const isOwnProfile =
+    connectedUser?.role === "professor" &&
+    connectedUser?.id_professeur === professor?.id_professeur;
+
+  const handleProfileUpdate = (updatedData: Partial<Professor>) => {
+    if (professor) {
+      setProfessor({ ...professor, ...updatedData });
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -43,7 +54,13 @@ function ProfessorProfilePage() {
 
   return (
     <div>
-      {professor && <ProfessorProfileCard professor={professor} />}
+      {professor && (
+        <EditableProfile
+          professor={professor}
+          isOwnProfile={isOwnProfile}
+          onUpdate={handleProfileUpdate}
+        />
+      )}
       <TabsContainer
         tabs={["Availability & Supervision", "Research Areas", "Opportunities"]}
       />

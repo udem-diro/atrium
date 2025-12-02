@@ -1,5 +1,6 @@
 export interface Professor {
   id_professeur: number;
+  UUID: string | null;
   courriel: string;
   nom: string;
   site_web: string | null;
