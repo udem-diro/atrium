@@ -65,8 +65,12 @@ function ProfessorProfilePage() {
         tabs={["Availability & Supervision", "Research Areas", "Opportunities"]}
       />
       <section className="mt-6">
-        {selectedTab === "Availability & Supervision" && (
-          <ProfessorAvailabilityTab />
+        {selectedTab === "Availability & Supervision" && professor && (
+          <ProfessorAvailabilityTab
+            professor={professor}
+            isOwnProfile={isOwnProfile}
+            onUpdate={handleProfileUpdate}
+          />
         )}
         {selectedTab === "Research Areas" && professor && (
           <ProfessorResearchAreaTab

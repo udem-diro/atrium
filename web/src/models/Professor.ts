@@ -9,5 +9,10 @@ export interface Professor {
   photo_profil: string | null;
   last_modified: string | null;
   research_areas: string[];
+  available_positions: number;
+  available_semester: string | null;
+  supervision_types: string[];
+  additional_info: string | null;
+  calendar_link: string | null;
   role: "professor";
 }
