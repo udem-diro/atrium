@@ -69,7 +69,12 @@ function ProfessorProfilePage() {
           <ProfessorAvailabilityTab />
         )}
         {selectedTab === "Research Areas" && <ProfessorResearchAreaTab />}
-        {selectedTab === "Opportunities" && <ProfessorOpportunitiesTab />}
+        {selectedTab === "Opportunities" && professor?.id_professeur && (
+          <ProfessorOpportunitiesTab
+            professorId={professor?.id_professeur}
+            isOwnProfile={isOwnProfile}
+          />
+        )}
       </section>
     </div>
   );

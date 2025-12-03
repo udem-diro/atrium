@@ -2,7 +2,7 @@ import React from "react";
 
 type ButtonProps = {
   buttonText: string;
-  variant?: "primary" | "secondary" | "outline" | "view";
+  variant?: "primary" | "secondary" | "outline" | "view" | "delete";
   size?: "sm" | "md" | "lg" | "responsive" | "full";
   className?: string;
   isFilterButton?: boolean;
@@ -39,6 +39,11 @@ function Button({
     case "view":
       variantClasses =
         "bg-[#005DAA] text-white font-semibold hover:bg-[#004985]";
+      break;
+    case "delete":
+      variantClasses =
+        "bg-red-500 shadow-md text-white font-semibold hover:bg-red-700";
+      break;
   }
 
   // Sizes
