@@ -147,8 +147,8 @@ function OpportunityFormModal({
               <option value="">Select type</option>
               <option value="Research">Research</option>
               <option value="Internship">Internship</option>
-              <option value="Teaching Assistant">Teaching Assistant</option>
-              <option value="Project">Project</option>
+              <option value="TA">Teaching Assistant</option>
+              <option value="Scholarship">Scholarship</option>
             </select>
           </div>
 
@@ -188,7 +188,7 @@ function OpportunityFormModal({
             />
             <Button
               buttonText="Cancel"
-              variant="view"
+              variant="delete"
               type="button"
               onClick={handleCancel}
               disabled={isSaving}

@@ -68,7 +68,13 @@ function ProfessorProfilePage() {
         {selectedTab === "Availability & Supervision" && (
           <ProfessorAvailabilityTab />
         )}
-        {selectedTab === "Research Areas" && <ProfessorResearchAreaTab />}
+        {selectedTab === "Research Areas" && professor && (
+          <ProfessorResearchAreaTab
+            professor={professor}
+            isOwnProfile={isOwnProfile}
+            onUpdate={handleProfileUpdate}
+          />
+        )}
         {selectedTab === "Opportunities" && professor?.id_professeur && (
           <ProfessorOpportunitiesTab
             professorId={professor?.id_professeur}
