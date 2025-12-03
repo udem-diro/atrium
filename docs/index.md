@@ -62,9 +62,9 @@ Il est important de noter que cette plateforme n’est pas une **application de 
 | Architecture              | 1er Octobre    | Diagramme UML ou modèle C4          | ✅ Terminé   |
 | Modèle de donneés         | 8 Octobre      | Diagramme UML ou entité-association | ✅ Terminé   |
 | Revue de conception       | 8 Octobre      | Feedback encadrant + ajustements    | ✅ Terminé  |
-| Implémentation v1         | 22 Octobre     | Application v1                      | 🔄 En cours  |
-| Implémentation v2 + tests | 12 Novembre    | Application v2 + Tests              | ⏳ À venir  |
-| Implémentation v3         | 3 Décembre     | Version finale                      | ⏳ À venir  |
-| Tests                     | 12-31 Novembre | Plan + Résultats intermédiaires     | ⏳ À venir  |
-| Évaluation finale         | 10 Décembre    | Analyse des résultats + Discussion  | ⏳ À venir  |
-| Présentation + Rapport    | 17 Décembre    | Présentation + Rapport              | ⏳ À venir  |
+| Implémentation v1         | 22 Octobre     | Application v1                      | ✅ Terminé   |
+| Implémentation v2 + tests | 12 Novembre    | Application v2 + Tests              | ✅ Terminé   |
+| Implémentation v3         | 3 Décembre     | Version finale                      | ✅ Terminé  |
+| Tests                     | 12-31 Novembre | Plan + Résultats intermédiaires     | ✅ Terminé   |
+| Évaluation finale         | 10 Décembre    | Analyse des résultats + Discussion  | 🔄 En cours  |
+| Présentation + Rapport    | 17 Décembre    | Présentation + Rapport              | 🔄 En cours |

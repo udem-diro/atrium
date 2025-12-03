@@ -206,8 +206,84 @@
     
 ## Semaine 10
 
+??? note "Implémentation des vues restantes et début de l’authentification"
+    - [x] Finalisation des vues restantes de l’application
+    - [x] Début de l’implémentation du signup et login
+    - [ ] Gestion automatique de la création d’un profil étudiant après l’inscription
+    - [ ] Résolution des incohérences entre auth.users et la table etudiants
+
+!!! info "Notes"
+    - L’interface est presque complète sur la partie visuelle
+    - Les premières interactions réelles commencent à être intégrées
+
+!!! warning "Difficultés rencontrées"
+    - Problème lors du signup : la création d'un étudiant depuis auth.users ne se faisait pas correctement
+    - Nécessité d’ajuster la logique Supabase (triggers, RLS, inserts liés)
+
+!!! abstract "Prochaines étapes"
+    - Terminer le système d’inscription complet (étudiant + profil)
+    - Stabiliser le login
+    - Connecter les premières données réelles au frontend
+
 ## Semaine 11
+
+??? note "Connexion du frontend à la base de données et fonctionnalités de recherche/tri"
+    - [x] Liaison complète du frontend avec la base de données Supabase
+    - [x] Affichage dynamique basé sur les données réelles
+    - [x] Ajout de la barre de recherche
+    - [x] Filtrage et triage (filtres rapides + dropdown)
+    - [x] Signup fonctionnel
+    - [x] Login entièrement opérationnel
+
+!!! info "Notes"
+    - L'application commence à être pleinement interactive
+    - Le contenu affiché provient désormais de données réelles
+
+!!! warning "Difficultés rencontrées"
+    - Adaptation du système de filtres avec les structures de données
+    - Synchronisation entre chargement initial et mises à jour dynamiques
+
+!!! abstract "Prochaines étapes"
+    - Offrir aux utilisateurs connectés la possibilité de modifier leur profil
+    - Débuter l’ajout des opportunités côté professeur
 
 ## Semaine 12
 
+??? note "Gestion des profils utilisateurs et ajout des opportunités"
+    - [x] Ajout de la modification du profil étudiant
+    - [x] Ajout de la modification du profil professeur
+    - [x] Implémentation de l'ajout des opportunités (fonctionnalité cœur)
+    - [x] Améliorations visuelles de l’interface
+    - [x] Corrections de bugs mineurs dans l’UI
+
+!!! info "Notes"
+    - L’application est maintenant fonctionnelle pour les deux types d’utilisateurs
+    - L’ajout d’opportunités rend l’outil réellement utile
+
+!!! warning "Difficultés rencontrées"
+    - Gestion des droits (RLS) pour la modification des profils
+    - Compatibilité responsive et cohérence graphique
+
+!!! abstract "Prochaines étapes"
+    - Finaliser toutes les fonctionnalités restantes
+    - Commencer les tests utilisateurs
+
 ## Semaine 13
+
+??? note "Finalisation, tests et préparation du rendu"
+    - [x] Rédaction du rapport final
+    - [x] Préparation de la présentation orale
+    - [x] Tests utilisateurs avec plusieurs personnes
+    - [x] Corrections des bugs détectés
+
+!!! info "Notes"
+    - Les tests externes ont permis de repérer plusieurs problèmes mineurs corrigés rapidement
+    - L’application atteint un niveau de stabilité suffisant pour le rendu final
+
+!!! warning "Difficultés rencontrées"
+    - Ajustements de dernière minute sur l’UX
+    - Quelques incohérences de données résolues avant la livraison
+
+!!! abstract "Prochaines étapes"
+    - Livraison du projet
+    - Présentation finale devant le jury
