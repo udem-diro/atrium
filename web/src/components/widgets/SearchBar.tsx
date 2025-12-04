@@ -13,11 +13,11 @@ function SearchBar({ placeholder }: SearchBarProps) {
   let placeholderText = "";
 
   if (selectedTab === "Opportunities") {
-    placeholderText = "Search opportunities, departments or professors...";
+    placeholderText = "Search opportunities by title, skills, department...";
   } else if (selectedTab === "Professors") {
-    placeholderText = "Search professors by name, or by department";
+    placeholderText = "Search professors by name or research area...";
   } else if (selectedTab === "Students") {
-    placeholderText = "Search students";
+    placeholderText = "Search students by name, interests, or projects...";
   }
   return (
     <div className="flex-3 flex gap-2 lg:gap-3 justify-start items-center bg-[#F3F3F5] rounded-md px-2 md:px-4 py-2">

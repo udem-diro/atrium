@@ -29,13 +29,30 @@ function StudentsList() {
     fetchStudents();
   }, []);
 
-  // Filter results based on search query
+  // Filter results based on search query - Extended fields
   const filteredStudents = students.filter((stu) => {
     const q = searchQuery.toLowerCase();
 
     return (
       stu.nom?.toLowerCase().includes(q) ||
-      stu.courriel?.toLowerCase().includes(q)
+      stu.courriel?.toLowerCase().includes(q) ||
+      stu.bio?.toLowerCase().includes(q) ||
+      stu.domaine_etude?.toLowerCase().includes(q) ||
+      // Search in interets_academiques array
+      (stu.interets_academiques &&
+        stu.interets_academiques.some((interet) =>
+          interet.toLowerCase().includes(q)
+        )) ||
+      // Search in project titles
+      (stu.projets &&
+        stu.projets.some((projet) =>
+          projet.title?.toLowerCase().includes(q)
+        )) ||
+      // Search in project technologies
+      (stu.projets &&
+        stu.projets.some((projet) =>
+          projet.technologies?.some((tech) => tech.toLowerCase().includes(q))
+        ))
     );
   });
 

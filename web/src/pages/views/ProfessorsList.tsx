@@ -29,13 +29,19 @@ function ProfessorsList() {
     fetchProfessors();
   }, []);
 
-  // Filter results based on search query
+  // Filter results based on search query - Extended fields
   const filteredProfessors = professors.filter((prof) => {
     const q = searchQuery.toLowerCase();
 
     return (
       prof.nom?.toLowerCase().includes(q) ||
-      prof.courriel?.toLowerCase().includes(q)
+      prof.courriel?.toLowerCase().includes(q) ||
+      prof.bio?.toLowerCase().includes(q) ||
+      prof.available_semester?.toLowerCase().includes(q) ||
+      prof.additional_info?.toLowerCase().includes(q) ||
+      // Search in research_areas array
+      (prof.research_areas &&
+        prof.research_areas.some((area) => area.toLowerCase().includes(q)))
     );
   });
 

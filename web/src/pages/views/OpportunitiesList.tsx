@@ -38,10 +38,17 @@ function OpportunitiesList() {
     .filter((opp) => {
       const q = searchQuery.toLowerCase();
 
-      // 1. SEARCH FILTER
+      // 1. SEARCH FILTER - Extended fields
       const matchesSearch =
         opp.titre?.toLowerCase().includes(q) ||
-        opp.description?.toLowerCase().includes(q);
+        opp.description?.toLowerCase().includes(q) ||
+        opp.department?.toLowerCase().includes(q) ||
+        opp.type?.toLowerCase().includes(q) ||
+        opp.location?.toString().toLowerCase().includes(q) ||
+        opp.duree?.toLowerCase().includes(q) ||
+        // Search in skills array
+        (opp.skills &&
+          opp.skills.some((skill) => skill.toLowerCase().includes(q)));
 
       // 2. DROPDOWN FILTER
       let matchesDropdown = true; // default (for "All")
