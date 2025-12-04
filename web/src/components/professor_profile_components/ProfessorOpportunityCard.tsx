@@ -83,109 +83,118 @@ function ProfessorOpportunityCard({
     : null;
 
   return (
-    <div className="flex flex-col justify-between gap-3 p-6 border rounded-xl shadow-md hover:shadow-lg transition-shadow bg-white">
-      {/* Header: Deadline, Status, Type */}
-      <div className="flex flex-col md:flex-row md:justify-between items-start gap-3">
-        <div className="flex flex-col items-start gap-3">
-          <h4 className="text-[#AA0000] font-semibold">Deadline: {deadline}</h4>
-          <Tag tagText={type ?? "Unknown"} />
+    <div className="flex flex-col justify-between gap-2 p-6 border rounded-xl shadow-md hover:shadow-lg transition-shadow bg-white">
+      <div className="flex flex-col gap-2">
+        {/* Header */}
+
+        <div className="flex flex-col gap-2">
+          <div className="flex justify-between gap-2">
+            <h4 className="text-[#AA0000] font-semibold">
+              Deadline: {deadline}
+            </h4>
+            <div
+              className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                ouvert
+                  ? "bg-green-100 text-green-800"
+                  : "bg-gray-100 text-gray-700"
+              }`}
+            >
+              {ouvert ? "Open" : "Closed"}
+            </div>
+          </div>
+          <div className="flex justify-start">
+            <Tag tagText={type ?? "Unknown"} />
+          </div>
         </div>
-        <span
-          className={`px-3 py-1 rounded-full text-xs font-semibold ${
-            ouvert ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-700"
-          }`}
-        >
-          {ouvert ? "Open" : "Closed"}
-        </span>
-      </div>
 
-      {/* Title + Department */}
-      <div className="flex flex-col md:flex-row md:items-center gap-2">
-        <h2 className="font-bold text-xl">{title}</h2>
-        <span className="text-sm text-gray-500 md:ml-2">— {dept}</span>
-      </div>
+        {/* Title + Department */}
+        <div className="flex flex-col md:flex-row md:items-center gap-2">
+          <h2 className="font-bold text-xl">{title}</h2>
+          <span className="text-sm text-gray-500 md:ml-2">— {dept}</span>
+        </div>
 
-      {/* Description */}
-      <p className="text-gray-600 text-sm line-clamp-4">{desc}</p>
+        {/* Description */}
+        <p className="text-gray-600 text-sm line-clamp-4">{desc}</p>
 
-      {/* Main Info Grid */}
-      <div className="flex flex-col gap-6 mt-3 text-sm text-gray-700">
-        {/* Left Column */}
-        <ul className="grid grid-cols-2 align-center space-y-2">
-          <li>
-            <strong>Start:</strong> {startDate ?? "Not specified"}
-          </li>
-          <li>
-            <strong>Duration:</strong> {duration !== "N/A" ? duration : "—"}
-          </li>
-          <li>
-            <strong>Time commitment:</strong>{" "}
-            {timeCommit !== "N/A" ? timeCommit : "—"}
-          </li>
-          <li>
-            <strong>Remuneration:</strong> {remunerationDisplay}
-          </li>
-          <li>
-            <strong>Positions:</strong>{" "}
-            {nb_positions ? `${nb_positions} position(s)` : "Not specified"}
-          </li>
-          <li>
-            <strong>Location:</strong> {locationDisplay}
-          </li>
-        </ul>
-        <hr className="border-gray-300" />
-        {/* Right Column */}
-        <ul className="grid grid-cols-2 space-y-2">
-          <li>
-            <strong>Partner:</strong>{" "}
-            {partnerDisplay ? (
-              <div className="flex flex-col gap-1">
-                {partnerDisplay.name && <span>{partnerDisplay.name}</span>}
-                <div className="flex flex-wrap gap-2 text-xs text-gray-500">
-                  {partnerDisplay.email && (
-                    <a
-                      href={`mailto:${partnerDisplay.email}`}
-                      className="underline"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {partnerDisplay.email}
-                    </a>
-                  )}
-                  {partnerDisplay.link && (
-                    <a
-                      href={partnerDisplay.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Website
-                    </a>
-                  )}
+        {/* Main Info Grid */}
+        <div className="flex flex-col gap-6 mt-3 text-sm text-gray-700">
+          {/* Left Column */}
+          <ul className="grid grid-cols-2 align-center space-y-2">
+            <li>
+              <strong>Start:</strong> {startDate ?? "Not specified"}
+            </li>
+            <li>
+              <strong>Duration:</strong> {duration !== "N/A" ? duration : "—"}
+            </li>
+            <li>
+              <strong>Time commitment:</strong>{" "}
+              {timeCommit !== "N/A" ? timeCommit : "—"}
+            </li>
+            <li>
+              <strong>Remuneration:</strong> {remunerationDisplay}
+            </li>
+            <li>
+              <strong>Positions:</strong>{" "}
+              {nb_positions ? `${nb_positions} position(s)` : "Not specified"}
+            </li>
+            <li>
+              <strong>Location:</strong> {locationDisplay}
+            </li>
+          </ul>
+          <hr className="border-gray-300" />
+          {/* Right Column */}
+          <ul className="grid grid-cols-2 space-y-2">
+            <li>
+              <strong>Partner:</strong>{" "}
+              {partnerDisplay ? (
+                <div className="flex flex-col gap-1">
+                  {partnerDisplay.name && <span>{partnerDisplay.name}</span>}
+                  <div className="flex flex-wrap gap-2 text-xs text-gray-500">
+                    {partnerDisplay.email && (
+                      <a
+                        href={`mailto:${partnerDisplay.email}`}
+                        className="underline"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {partnerDisplay.email}
+                      </a>
+                    )}
+                    {partnerDisplay.link && (
+                      <a
+                        href={partnerDisplay.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Website
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ) : (
-              "None"
-            )}
-          </li>
-          <li>
-            <strong>Skills:</strong>{" "}
-            {Array.isArray(skills) && skills.length > 0 ? (
-              <div className="flex flex-wrap gap-2 mt-1">
-                {skills.map((s: string) => (
-                  <span
-                    key={s}
-                    className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              "None listed"
-            )}
-          </li>
-        </ul>
+              ) : (
+                "None"
+              )}
+            </li>
+            <li>
+              <strong>Skills:</strong>{" "}
+              {Array.isArray(skills) && skills.length > 0 ? (
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {skills.map((s: string) => (
+                    <span
+                      key={s}
+                      className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                "None listed"
+              )}
+            </li>
+          </ul>
+        </div>
       </div>
 
       {/* Actions */}

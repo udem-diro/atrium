@@ -13,6 +13,40 @@
   --color-dark-blue: #99caf2;
   --color-light-gray: #f3f3f5;
   --color-dark-gray: #dbdbdb;
+  --color-secondary: #f2994a; /* orange – highlight important info */
+  --color-light-orange: #ffe6cc; /* background variant */
+  --color-dark-orange: #f2b57a; /* hover/secondary */
+
+  --color-success: #27ae60; /* green – success/open status */
+  --color-light-green: #d4f4dd; /* light background */
+  --color-dark-green: #219150; /* accent/hover */
+
+  --color-warning: #f2c94c; /* yellow – caution/deadline */
+  --color-light-yellow: #fff4cc;
+  --color-dark-yellow: #e6b800;
+
+  --color-error: #eb5757; /* red – error/closed status */
+  --color-light-red: #ffd6d6;
+  --color-dark-red: #d42e2e;
+
+  --color-light-gray: #f3f3f5; /* neutral backgrounds */
+  --color-dark-gray: #dbdbdb; /* borders/shadows */
+  --color-gray-text: #4b5563; /* standard text gray */
+
+  /* Purple family */
+  --color-purple: #8e44ad;
+  --color-light-purple: #e6d4f0;
+  --color-dark-purple: #6e2c91;
+
+  /* Turquoise / Teal */
+  --color-turquoise: #1abc9c;
+  --color-light-turquoise: #c2f0eb;
+  --color-dark-turquoise: #159d8b;
+
+  /* Pink */
+  --color-pink: #ff6b81;
+  --color-light-pink: #ffd6de;
+  --color-dark-pink: #e04461;
 }
 
 /* Thin, rounded scrollbar */
