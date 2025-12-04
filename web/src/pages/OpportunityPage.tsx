@@ -4,12 +4,7 @@ import ProfessorProfileCard from "../components/ProfessorProfileCard.tsx";
 import Button from "../components/widgets/Button";
 import InfoCard from "../components/widgets/InfoCard.tsx";
 import Tag from "../components/widgets/Tag";
-import {
-  FaClock,
-  FaCalendarAlt,
-  FaUserGraduate,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+import { FaClock, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getOpportunity } from "../API/updateDB/updateOpportunite.ts";

@@ -44,7 +44,7 @@ function StudentsList() {
   }, [filteredStudents]);
 
   return (
-    <div className="grid gap-2 md:gap-3 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+    <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
       {filteredStudents.map((student) => (
         <StudentCard key={student.id_etudiant} student={student} />
       ))}

@@ -158,43 +158,36 @@ function OpportunityCard({ opportunity }: OpportunityCardProps) {
             </li>
           </ul>
           <hr className="border-gray-300" />
-          <ul className="grid grid-cols-2 space-y-2">
-            <li>
-              <strong>Partner:</strong>{" "}
-              {partnerDisplay ? (
-                <div className="flex flex-col gap-1">
-                  {partnerDisplay.name && <span>{partnerDisplay.name}</span>}
-                  <div className="flex flex-wrap gap-2 text-xs text-gray-500">
-                    {partnerDisplay.email && (
-                      <a
-                        href={`mailto:${partnerDisplay.email}`}
-                        className="underline"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {partnerDisplay.email}
-                      </a>
-                    )}
-                    {partnerDisplay.link && (
-                      <a
-                        href={partnerDisplay.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="underline"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Website
-                      </a>
-                    )}
+          <ul className="flex gap-6">
+            {partnerDisplay?.name ? (
+              <li className="flex-1">
+                <strong>Partner:</strong>{" "}
+                {partnerDisplay.name ? (
+                  <div className=" flex flex-col gap-1">
+                    {partnerDisplay.name && <span>{partnerDisplay.name}</span>}
+                    <div className="flex flex-wrap gap-2 text-xs text-gray-500">
+                      {partnerDisplay.email && (
+                        <a
+                          href={`mailto:${partnerDisplay.email}`}
+                          className="underline"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {partnerDisplay.email}
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                "None"
-              )}
-            </li>
+                ) : (
+                  "None"
+                )}
+              </li>
+            ) : (
+              <li></li>
+            )}
             <li>
               <strong>Skills:</strong>{" "}
               {Array.isArray(skills) && skills.length > 0 ? (
-                <div className="flex flex-wrap gap-2 mt-1">
+                <div className="flex-1 flex flex-wrap gap-2 mt-1">
                   {skills.map((s: string) => (
                     <span
                       key={s}
