@@ -67,23 +67,25 @@ export default function HomePage() {
       </div>
 
       {/* Quick filters buttons */}
-      <div className="flex flex-col gap-2 mt-3">
-        <h2 className="font-semibold">Filter by department</h2>
-        <div className="flex gap-2 lg:gap-3 flex-wrap">
-          {departments.map((d) => (
-            <Button
-              key={d.department}
-              buttonText={d.department}
-              size="sm"
-              variant="secondary"
-              isFilterButton
-              dataSelected={selectedDepartments.includes(d.department)}
-              className="text-xs lg:text-sm"
-              onClick={() => toggleDepartment(d.department)}
-            />
-          ))}
+      {selectedTab === "Opportunities" && (
+        <div className="flex flex-col gap-2 mt-3">
+          <h2 className="font-semibold">Filter by department</h2>
+          <div className="flex gap-2 lg:gap-3 flex-wrap">
+            {departments.map((d) => (
+              <Button
+                key={d.department}
+                buttonText={d.department}
+                size="sm"
+                variant="secondary"
+                isFilterButton
+                dataSelected={selectedDepartments.includes(d.department)}
+                className="text-xs lg:text-sm"
+                onClick={() => toggleDepartment(d.department)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Search result text + order by */}
       <div className="mt-6 flex items-center">
