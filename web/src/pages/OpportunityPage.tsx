@@ -64,7 +64,7 @@ function OpportunityPage() {
         <div className="flex w-full flex-col md:flex-row gap-4 justify-center">
           {professor && <ProfessorProfileCard professor={professor} />}
           <OrganisationProfileCard
-            name={opportunity?.partenaire}
+            name={opportunity?.partenaire?.name}
             department="Research and Development"
             email="contact@techinnovations.com"
           />

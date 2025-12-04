@@ -223,15 +223,8 @@ function EditableProfile({
               <FaEnvelope />
               <span>Email</span>
             </div>
-            {isEditing ? (
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="border w-full p-2 rounded mt-1"
-              />
-            ) : (
-              <p className="font-semibold mt-1 break-all">{email}</p>
-            )}
+
+            <p className="font-semibold mt-1 break-all">{email}</p>
           </div>
 
           {/* BIO */}
