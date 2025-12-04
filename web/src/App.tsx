@@ -8,6 +8,8 @@ import StudentProfilePage from "./pages/StudentProfilePage.tsx";
 import AdminProfilePage from "./pages/AdminProfilePage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import SignupPage from "./pages/SignupPage.tsx";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import { useEffect } from "react";
 import { supabase } from "./API/supabaseClient.tsx";
 import { getStore } from "./utils/Store.ts";
@@ -103,7 +105,7 @@ function App() {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-      if (mounted) {
+      if (mounted && window.location.pathname !== "/reset-password") {
         await loadUser(session);
       }
 
@@ -111,6 +113,18 @@ function App() {
       const {
         data: { subscription },
       } = supabase.auth.onAuthStateChange(async (_event, session) => {
+        console.log(
+          "Auth event in App.tsx:",
+          _event,
+          "Path:",
+          window.location.pathname
+        );
+
+        // Skip loading user during password recovery
+        if (window.location.pathname === "/reset-password") {
+          console.log("Skipping user load on reset password page");
+          return;
+        }
         if (mounted) {
           await loadUser(session);
         }
@@ -140,6 +154,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<HomePage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
         </Routes>
       </div>
     </Router>

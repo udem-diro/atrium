@@ -59,8 +59,10 @@ function LoginPage() {
                 <input type="checkbox" id="rememberMe" name="rememberMe" />
                 <label htmlFor="rememberMe"> Remember for 30 days</label>
               </div>
-
-              <h3 className="underline cursor-pointer text-primary font-semibold text-sm lg:text-md">
+              <h3
+                className="underline cursor-pointer text-primary font-semibold text-sm lg:text-md"
+                onClick={() => navigate("/forgot-password")}
+              >
                 Forgot password?
               </h3>
             </div>

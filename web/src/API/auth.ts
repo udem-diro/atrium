@@ -44,3 +44,32 @@ export async function signOut(): Promise<void> {
   const { error } = await supabase.auth.signOut();
   if (error) throw error;
 }
+
+// Request password reset email
+export async function requestPasswordReset(email: string) {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/reset-password`,
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+// Update password with the token from email
+export async function updatePassword(newPassword: string) {
+  console.log("Attempting to update password..."); // Debug log
+
+  const { data, error } = await supabase.auth.updateUser({
+    password: newPassword,
+  });
+
+  console.log("Update response:", { data, error }); // Debug log
+
+  if (error) {
+    console.error("Password update error:", error);
+    throw error;
+  }
+
+  return data;
+}
