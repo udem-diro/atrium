@@ -22,7 +22,7 @@ function ProfessorCard({ professor }: ProfessorCardProps) {
   };
 
   const navigateToProfessorProfile = () => {
-    navigate(`/professeur/${professor.id_professeur}`);
+    navigate(`/professor/${professor.id_professeur}`);
   };
 
   useEffect(() => {

@@ -21,8 +21,8 @@ function App() {
   //   // ONLY FOR TESTING - comment after first run
   //   async function createTestProfessor() {
   //     try {
-  //       const email = "professor@gmail.com";
-  //       const password = "Test1234!";
+  //       const email = "m.violette@gmail.com";
+  //       const password = "mviolette1234!";
 
   //       const { data, error } = await supabase.auth.signUp({
   //         email,

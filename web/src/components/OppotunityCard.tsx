@@ -214,10 +214,10 @@ function OpportunityCard({ opportunity }: OpportunityCardProps) {
                 <img
                   src={professor.photo_profil}
                   alt={professor.nom}
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="w-16 aspect-square rounded-full object-cover"
                 />
               ) : (
-                <div className="w-16 h-16 rounded-full bg-primary text-white font-bold flex justify-center items-center text-xl">
+                <div className="w-16 aspect-square rounded-full bg-primary text-white font-bold flex justify-center items-center text-xl">
                   {getInitials(professor.nom)}
                 </div>
               )}

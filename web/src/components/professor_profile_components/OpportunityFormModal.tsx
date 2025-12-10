@@ -267,6 +267,33 @@ function OpportunityFormModal({
 
               <div>
                 <label className="block text-sm font-medium mb-1">
+                  Submission Deadline <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  value={expiration}
+                  onChange={(e) => setExpiration(e.target.value)}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Number of Positions
+                </label>
+                <input
+                  type="number"
+                  value={nbPositions}
+                  onChange={(e) => setNbPositions(e.target.value)}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="e.g., 2"
+                  min="1"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">
                   Department
                 </label>
                 <input
@@ -325,7 +352,7 @@ function OpportunityFormModal({
               Timeline & Commitment
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium mb-1">
                   Start Date
@@ -335,19 +362,6 @@ function OpportunityFormModal({
                   value={dateDebut}
                   onChange={(e) => setDateDebut(e.target.value)}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Deadline <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="date"
-                  value={expiration}
-                  onChange={(e) => setExpiration(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                  required
                 />
               </div>
 
@@ -400,7 +414,7 @@ function OpportunityFormModal({
             </div>
 
             {remunere && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1  gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">
                     Amount ($/hour or total)
@@ -412,20 +426,6 @@ function OpportunityFormModal({
                     className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="e.g., 20"
                     min="0"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1">
-                    Number of Positions
-                  </label>
-                  <input
-                    type="number"
-                    value={nbPositions}
-                    onChange={(e) => setNbPositions(e.target.value)}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="e.g., 2"
-                    min="1"
                   />
                 </div>
               </div>
